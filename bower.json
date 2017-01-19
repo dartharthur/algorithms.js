@@ -1,0 +1,21 @@
+{
+  "name": "toy-problems",
+  "homepage": "https://github.com/kamirdjanian/toy-problems",
+  "authors": [
+    "Kevin Amirdjanian <kevin.amirdjanian@gmail.com>"
+  ],
+  "description": "Collection of interview challenges written in JavaScript.",
+  "main": "",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7"
+  }
+}

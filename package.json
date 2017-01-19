@@ -1,0 +1,28 @@
+{
+  "name": "toy-problems",
+  "version": "1.0.0",
+  "description": "Collection of interview challenges written in JavaScript.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "lite-server",
+    "postinstall": "bower install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kamirdjanian/toy-problems.git"
+  },
+  "author": "Kevin Amirdjanian",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kamirdjanian/toy-problems/issues"
+  },
+  "homepage": "https://github.com/kamirdjanian/toy-problems#readme",
+  "devDependencies": {
+    "babel": "^6.5.2",
+    "babel-preset-es2015": "^6.18.0",
+    "bower": "^1.8.0",
+    "lite-server": "^2.2.2",
+    "requirejs": "^2.3.2"
+  }
+}
