@@ -1,14 +1,19 @@
-const Tree = function(value) {
+function Tree(value) {
   this.value = value;
   this.children = [];
 };
 
+function BinaryTreeNode(value) {
+  this.value = value;
+  this.left = this.right = null;
+}
+
 Tree.prototype.DFSelect = function(filter) {    
   /**
-   * Key point:
-   * If want to use a counter for tree depth 
-   * Pass it in as a parameter to the recurse function 
-   * This way the counter tracks tree depth via the call stack
+   * key point:
+   * if want to use a counter for tree depth 
+   * pass it in as a parameter to the recurse function 
+   * this way the counter tracks tree depth via the call stack
    */  
   let result = [];
   recurse = (node, nodeDepth) => {
@@ -63,10 +68,10 @@ Tree.prototype.countLeaves = function() {
 
 Tree.prototype.map = function(callback) {
   let mappedTree = new Tree(callback(this.value));
-  recurse = (node, currentNode) => {
-    node.children.forEach(child => {
-      let newNode = currentNode.addChild(callback(child.value));
-      recurse(child, newNode);
+  recurse = (current, newCurrent) => {
+    current.children.forEach(child => {
+      let newChild = newCurrent.addChild(callback(child.value));
+      recurse(child, newChild);
     })
   };
   recurse(this, mappedTree);
@@ -87,7 +92,7 @@ Tree.prototype.addChild = function(child) {
 };
 
 Tree.prototype.isDescendant = function(child) {
-  if(this.children.indexOf(child) !== -1) {
+  if (this.children.indexOf(child) !== -1) {
     // `child` is an immediate child of this tree
     return true;
   } else {
@@ -109,4 +114,37 @@ Tree.prototype.removeChild = function(child) {
   } else {
     throw new Error("That node is not an immediate child of this tree");
   }
+};
+
+/**
+ * @param {TreeNode} root
+ * @return {boolean}
+ */
+/** 
+ * note:
+ * this solution needs to be modified
+ * only solves for topmost left and right subtrees but child nodes must also be balanced
+ * i.e. if a child node's left and right subtrees have height diff > 1 then whole tree is unbalanced
+ */
+const isBalanced = function(root) {
+  let leftDepth = 0;
+  let rightDepth = 0;
+  
+  const findDepth = function(node) {
+    let q = [ [node, 1] ];
+    let current;
+    let depth;
+    while (q.length > 0) {
+      current = q.shift();
+      current[0] && current[0].left && q.push([current[0].left, current[1] + 1]);
+      current[0] && current[0].right && q.push(current[0].right, current[1] + 1);
+      current[0] ? depth = current[1] : depth;
+    } 
+    return depth;
+  };
+  
+  root.left ? leftDepth = findDepth(root.left) : leftDepth;
+  root.right ? rightDepth = findDepth(root.right) : rightDepth;
+
+  return Math.abs(leftDepth - rightDepth) > 1 ? false : true;
 };
