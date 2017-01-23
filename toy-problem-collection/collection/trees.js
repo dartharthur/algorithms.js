@@ -10,7 +10,7 @@ function BinaryTreeNode(value) {
 
 Tree.prototype.DFSelect = function(filter) {    
   /**
-   * key point:
+   * note:
    * if want to use a counter for tree depth 
    * pass it in as a parameter to the recurse function 
    * this way the counter tracks tree depth via the call stack
@@ -116,10 +116,6 @@ Tree.prototype.removeChild = function(child) {
   }
 };
 
-/**
- * @param {TreeNode} root
- * @return {boolean}
- */
 /** 
  * note:
  * this solution needs to be modified
