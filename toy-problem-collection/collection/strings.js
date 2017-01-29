@@ -2,6 +2,10 @@
  * initial attempt at vertial scanning
  * i.e. check same character index of the strings
  * before moving on to the next column/character index
+ * 
+ * note: my approach was if the same do something
+ * solutions' approach was if NOT the same do something 
+ * think about when or the other is more appropriate given the problem
  */
 function longestCommonPrefix(strings) {
   if (strings.length === 0) return '';
@@ -79,7 +83,9 @@ function longestCommonPrefixVertical(strings) {
        * 
        * we have already checked all of the previous characters, so if we reach the point
        * where i is equal to the length of the string under comparison, it means that the first
-       * string is longer than the comparator string but we only want common prefixes so we have
+       * string is longer than the comparator string and they have all previous characters in common 
+       * 
+       * we only want common prefixes so we have
        * to trim the first string to be the same length as the comparator string 
        * 
        * the conditional is checking for the two situations in which we would want to trim
@@ -92,4 +98,24 @@ function longestCommonPrefixVertical(strings) {
   }
 
   return strings[0];
+};
+
+romanToInt = s => {
+  const values = {
+    I: 1,
+    V: 5,
+    X: 10,
+    L: 50,
+    C: 100,
+    D: 500,
+    M: 1000
+  };
+  let sum = 0;
+  if (s === '') return null;
+  for (let i = 0; i < s.length; i++) {
+    if (!values[s[i]]) return null;
+    if (values[s[i + 1]] > values[s[i]]) sum -= values[s[i]];
+    else sum += values[s[i]];
+  }
+  return sum;
 };
