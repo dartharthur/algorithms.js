@@ -119,3 +119,12 @@ romanToInt = s => {
   }
   return sum;
 };
+
+/**
+ * very simple implementation
+ * to-do: explore various ways to reverse string
+ */
+reverseString = s => {
+  return s.split('').reverse().join('');
+};
+
