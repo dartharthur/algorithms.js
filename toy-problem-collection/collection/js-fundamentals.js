@@ -14,3 +14,25 @@ Function.prototype.bind = function(context) {
     return func.apply(context, calledArgs)
   }
 };
+
+const compose = function() {
+  let functions = Array.from(arguments);
+  return function(arg) {
+    // let initialArgs = Array.from(arguments);
+    return functions.reduceRight(function(input, func) {
+      return func.call(null, input);
+    }, arg);
+  };
+};
+
+const pipe = function() {
+  let functions = Array.from(arguments);
+  return function(arg) {
+    // let initialArgs = Array.from(arguments);
+    return functions.reduce(function(input, func) {
+      return func.call(null, input);
+    }, arg);
+  };
+};
+
+const compose = (...args) => v => args.reduceRight((a, f) => f(a), v);  
