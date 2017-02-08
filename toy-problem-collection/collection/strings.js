@@ -128,3 +128,53 @@ reverseString = s => {
   return s.split('').reverse().join('');
 };
 
+printStaircaseV1 = n => {
+  if (n <= 0) return '';
+  let staircase = '';
+  let flag = false;
+
+  recurse = (level) => {
+    if (level === 0) flag = true;
+    if (flag) return;
+    let built = '';
+    while (built.length <= n) {
+      if (built.length >= level) {
+        built += '#';
+      } else {
+        built += ' ';
+      } 
+    }
+    built += '\n';
+    staircase += built.slice(1);
+    recurse(level - 1);
+  };
+
+  recurse(n);
+  return staircase.slice(0, staircase.length - 1);
+}; 
+
+printStaircaseV2 = n => {
+  let staircase = ''
+  for (let i = 1; i <= n; i++) {
+    let size = n;
+    /** 
+     * when decrementing inline e.g. while (size-- > i): 
+     * conditional comparison occurs first
+     * then the counter is immediately decremented
+     * upon entering/re-entering the loop
+     * note that decrementing inline vs inloop changes the
+     * conditional comparison for the hash char (>= 0 for inline vs >= 1 for inloop)
+     * n = 6 --> 5,4,3,2,1,0 (inline) vs. 6,5,4,3,2,1 (inloop)
+     */
+    while (size > i) {
+      staircase += ' ';
+      size--;
+    }
+    while (size >= 1) {
+      staircase += '#';
+      size--;
+    }
+    staircase += '\n';
+  }
+  return staircase.slice(0, staircase.length - 1).split('\n');
+};

@@ -15,3 +15,49 @@ function twoSum(nums, target) {
     }
   }
 };
+
+// function spyOn(fn) {
+//   var callCount = 0;
+//   var savedArguments = [];
+//   var savedValues = [];
+  
+//   var spyFunc = function () {
+//     var args = Array.from(arguments);
+//     for (var i = 0; i < args.length; i++) {
+//       savedArguments.push(args[i]);
+//     }
+//     callCount++;
+//     var value = fn.apply(this, arguments);
+//     savedValues.push(value);
+//     return value;
+//   };
+  
+//   spyFunc.callCount = function() {
+//     return callCount;
+//   };
+  
+//   spyFunc.wasCalledWith = function(arg) {
+//     var wasCalled = false;
+//     for (var i = 0; i < savedArguments.length; i++) {
+//       if (arg === savedArguments[i]) {
+//         wasCalled = true;
+//         break;
+//       }
+//     }
+//     return wasCalled;
+//   };
+  
+//   spyFunc.returned = function(val) {
+//     var wasCalled = false;
+//     for (var i = 0; i < savedValues.length; i++) {
+//       if (val === savedValues[i]) {
+//         wasCalled = true;
+//         break;
+//       }
+//     }
+//     return wasCalled;
+//   };
+  
+//   return spyFunc;
+// };
+
