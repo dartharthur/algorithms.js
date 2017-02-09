@@ -1,4 +1,4 @@
-const bind = function(func, context) {
+function bind(func, context) {
   let boundArgs = Array.from(arguments).slice(2);
   return function() {
     let calledArgs = boundArgs.concat(Array.from(arguments));
@@ -15,7 +15,7 @@ Function.prototype.bind = function(context) {
   }
 };
 
-const compose = function() {
+function compose() {
   let functions = Array.from(arguments);
   return function(arg) {
     return functions.reduceRight(function(input, func) {
@@ -24,7 +24,7 @@ const compose = function() {
   };
 };
 
-const pipe = function() {
+function pipe() {
   let functions = Array.from(arguments);
   return function(arg) {
     return functions.reduce(function(input, func) {
@@ -33,28 +33,27 @@ const pipe = function() {
   };
 };
 
-/** 
- * eventing system
- * note: explain to students that you can check the console in the challenge app
- */
-/** version 1 (explicit) */
-var mixEventsV1 = (obj) => {
+/** version 1 (explicit es5) */
+function mixEventsV1(obj) {
   var events = {};
+  // var proof = 'am a closure';
 
   obj.trigger = function(event) {
+    // console.log('here is proof that I', proof);
     var boundArguments = Array.prototype.slice.call(arguments, 1);
-    var eventHandlers = events[event];
-    if (eventHandlers !== undefined) {
-      for (var i = 0; i < eventHandlers.length; i++) {
-        eventHandlers[i].apply(this, boundArguments);
+    var eventListeners = events[event];
+    if (eventListeners !== undefined) {
+      for (var i = 0; i < eventListeners.length; i++) {
+        eventListeners[i].apply(this, boundArguments);
       }
     }
   };
 
   obj.on = function(event, callback) {
-    var eventHandlers = events[event];
-    if (eventHandlers !== undefined) {
-      eventHandlers.push(callback);
+    // console.log('here is proof that I', proof);
+    var eventListeners = events[event];
+    if (eventListeners !== undefined) {
+      eventListeners.push(callback);
     } else {
       events[event] = []
       events[event].push(callback);
@@ -63,8 +62,8 @@ var mixEventsV1 = (obj) => {
   return obj;
 };
 
-/** version 2 (succinct) */
-const mixEventsV2 = (obj) => {
+/** version 2 (succinct es6) */
+mixEventsV2 = (obj) => {
   const events = {};
 
   obj.trigger = function(event, ...args) {
@@ -75,4 +74,32 @@ const mixEventsV2 = (obj) => {
     events[event] ? events[event].push(callback) : events[event] = [callback];
   };
   return obj;
+};
+
+function spyOn(fn) {
+  let callCount = 0;
+  let answerKey = {};
+  
+  const spyFunc = function() {
+    let args = Array.from(arguments);
+    let answer = fn.apply(null, args);
+    args.forEach(arg => answerKey[JSON.stringify(arg)] = answer);
+    callCount++;
+    return answer;
+  };
+  
+  spyFunc.callCount = function() {
+    return callCount;
+  };
+  
+  spyFunc.wasCalledWith = function(arg) {
+    return !!answerKey[JSON.stringify(arg)];
+  };
+  
+  spyFunc.returned = function(val) {
+    for (let key in answerKey) {
+      return answerKey[key] === val;
+    }
+  };
+  return spyFunc;
 };

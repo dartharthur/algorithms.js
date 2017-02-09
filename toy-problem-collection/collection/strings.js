@@ -1,5 +1,5 @@
 /**
- * initial attempt at vertial scanning
+ * initial attempt at vertical scanning
  * i.e. check same character index of the strings
  * before moving on to the next column/character index
  * 
@@ -176,5 +176,5 @@ printStaircaseV2 = n => {
     }
     staircase += '\n';
   }
-  return staircase.slice(0, staircase.length - 1).split('\n');
+  return staircase.slice(0, staircase.length - 1);
 };
