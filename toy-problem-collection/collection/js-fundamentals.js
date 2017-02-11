@@ -67,7 +67,7 @@ mixEventsV2 = (obj) => {
   const events = {};
 
   obj.trigger = function(event, ...args) {
-    events[event] && events[event].forEach(event => event.apply(this, args));
+    events[event] && events[event].forEach(eventListener => eventListener.apply(this, args));
   };
 
   obj.on = function(event, callback) {
