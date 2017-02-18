@@ -12,7 +12,7 @@ function bubbleSort(array) {
   return array;
 };
 
-function insertionSortV2(array) {
+function insertionSortV1(array) {
   for (let i = 0 ; i < array.length; i++) {
     if (array[i + 1] && array[i].value > array[i + 1].value) {
       for (let j = i + 1; j >= 0; j--) {
@@ -47,3 +47,25 @@ function selectionSort(array) {
   }
   return array;
 };
+
+function mergeSort(array) {
+  
+};
+
+// function quickSort(array) {
+//   let pivot = Math.floor(Math.random() * array.length);
+//   let lesserPartition = [];
+//   let greaterPartition = [];
+
+//   for (let i = 0; i < array.length; i++) {
+//     i !== pivot && array[i] < array[pivot] && lesserPartition.push(array[i]);
+//     i !== pivot && array[i] > array[pivot] && greaterPartition.push(array[i]);
+//   }
+
+//   if (lesserPartition.length <= 1 && greaterPartition.length <= 1) {
+//     console.log(lesserPartition.concat([array[pivot]]).concat(greaterPartition));
+//   }
+
+//   lesserPartition.length > 1 && quickSort(lesserPartition);
+//   greaterPartition.length > 1 && quickSort(greaterPartition);
+// };
