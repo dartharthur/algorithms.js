@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "lite-server",
-    "postinstall": "bower install"
+    "start": "lite-server"
   },
   "repository": {
     "type": "git",
@@ -20,6 +19,17 @@
   "homepage": "https://github.com/kamirdjanian/toy-problems#readme",
   "devDependencies": {
     "bower": "^1.8.0",
+    "jspm": "^0.16.52",
     "lite-server": "^2.2.2"
+  },
+  "dependencies": {
+    "bootstrap": "^3.3.7"
+  },
+  "jspm": {
+    "dependencies": {},
+    "devDependencies": {
+      "traceur": "github:jmcriffey/bower-traceur@0.0.93",
+      "traceur-runtime": "github:jmcriffey/bower-traceur-runtime@0.0.93"
+    }
   }
 }

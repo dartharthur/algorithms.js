@@ -53,3 +53,38 @@ function rockPaperPermutationV3(c, b = '', r = []) {
   b.length === c ? r.push(b) : a.forEach(d => rockPaperPermutationV3(c, b + d, r));
   return r;
 };
+
+function telephoneWords(digitString) {
+  const results = [];
+  const keypad = {
+    '0': ['0'],
+    '1': ['1'],
+    '2': ['A','B','C'],
+    '3': ['D','E','F'],
+    '4': ['G','H','I'],
+    '5': ['J','K','L'],
+    '6': ['M','N','O'],
+    '7': ['P','Q','R','S'],
+    '8': ['T','U','V'],
+    '9': ['W','X','Y','Z']
+  };
+  
+  const recurse = function(built, round) {
+    if (built.length === digitString.length) {
+      results.push(built);
+      return;
+    } else {
+      for (let i = 0; i < digitString.length; i++) {
+        // recurse(built + keypad[digitString[i]][0], round + 1)
+        if (digitString[i] === '0') recurse(built + '0');
+        if (digitString[i] === '1') recurse(built + '1');
+        // keypad[digitString[i]].forEach(digit => {
+        //   recurse(built += digit);
+        // });
+      }
+    }
+  };
+  
+  recurse('', 0);
+  return results;
+};

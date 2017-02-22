@@ -5,18 +5,14 @@
   <title>Toy Problems</title>
 
   <!-- Vendor Assets -->
-  <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
 
   <!-- Authored Assets -->
-  <script src="toy-problem-collection/main.js"></script>
-  <script src="toy-problem-collection/collection/arrays.js"></script>
-  <script src="toy-problem-collection/collection/js-fundamentals.js"></script>
-  <script src="toy-problem-collection/collection/logic.js"></script>
-  <script src="toy-problem-collection/collection/math.js"></script>
-  <script src="toy-problem-collection/collection/permutations.js"></script>
-  <script src="toy-problem-collection/collection/sorting-algorithms.js"></script>
-  <script src="toy-problem-collection/collection/strings.js"></script>
-  <script src="toy-problem-collection/collection/trees.js"></script>
+  <script src="jspm_packages/system.js"></script>
+  <script src="config.js"></script>
+  <script>
+    System.import('main.js');
+  </script>
 </head>
 <body>
   <div class="container">
