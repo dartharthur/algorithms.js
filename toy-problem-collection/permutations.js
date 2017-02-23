@@ -1,5 +1,5 @@
 /**
- * key takeaway:
+ * rps key takeaway:
  * 
  * need to use the call stack to control the length of built
  * attempting to iterate through choices and add to built BEFORE making the recursive call
@@ -54,7 +54,50 @@ function rockPaperPermutationV3(c, b = '', r = []) {
   return r;
 };
 
-function telephoneWords(digitString) {
+/**
+ * telephone words key takeaway:
+ * 
+ * initial thought was to use a loop to iterate over the digitString
+ * to ensure we capture all permutations
+ * 
+ * this is wrong because our loop would reset every time we recurse and 
+ * we would be duplicating our answers. we can just use our round counter 
+ * to iterate over the digitString. 
+ * 
+ * the idea is that for each digit in the digitString, we
+ * want to build up our answer by recursively adding all values
+ * in the next position of the digitString to our built answer
+ */
+
+/** no inner recursive function, instead passes variables between function calls */
+function telephoneWordsV1(digitString, built = '', results = [], index = 0) {
+  const keypad = {
+    '0': ['0'],
+    '1': ['1'],
+    '2': ['A','B','C'],
+    '3': ['D','E','F'],
+    '4': ['G','H','I'],
+    '5': ['J','K','L'],
+    '6': ['M','N','O'],
+    '7': ['P','Q','R','S'],
+    '8': ['T','U','V'],
+    '9': ['W','X','Y','Z']
+  };
+  
+  if (digitString.length === 0) return results;
+  if (built.length === digitString.length) {
+    return results.push(built);
+  } else {
+    keypad[digitString[index]].forEach(digit => {
+      telephoneWordsV1(digitString, built + digit, results, index + 1);
+    });
+  }
+
+  return results;
+};
+
+/** makes use of closure via an inner recursive function */
+function telephoneWordsV2(digitString) {
   const results = [];
   const keypad = {
     '0': ['0'],
@@ -69,22 +112,18 @@ function telephoneWords(digitString) {
     '9': ['W','X','Y','Z']
   };
   
-  const recurse = function(built, round) {
+  if (digitString.length === 0) return results;
+
+  const recurse = function(built, index) {
     if (built.length === digitString.length) {
-      results.push(built);
-      return;
+      return results.push(built);
     } else {
-      for (let i = 0; i < digitString.length; i++) {
-        // recurse(built + keypad[digitString[i]][0], round + 1)
-        if (digitString[i] === '0') recurse(built + '0');
-        if (digitString[i] === '1') recurse(built + '1');
-        // keypad[digitString[i]].forEach(digit => {
-        //   recurse(built += digit);
-        // });
-      }
+      keypad[digitString[index]].forEach(digit => {
+        recurse(built + digit, index + 1);
+      });
     }
   };
-  
+
   recurse('', 0);
   return results;
 };
