@@ -19,7 +19,7 @@ function singleNumberV2(nums) {
   
 };
 
-/** linear time - traverses array twice */
+/** O(n) - traverses array twice */
 function getMaxProfitV1(stockPricesYesterday) {
   let maxNumAtIndex = 0;
   let minNumAtIndex = 0;
@@ -32,7 +32,7 @@ function getMaxProfitV1(stockPricesYesterday) {
   return stockPricesYesterday[maxNumAtIndex] - stockPricesYesterday[minNumAtIndex];
 };
 
-/** greedy - linear time - traverses array once */
+/** greedy - O(n) time - traverses array once */
 function getMaxProfitV2(stockPricesYesterday) {
   if (stockPricesYesterday.length < 2) throw new Error('Getting a profit requires at least 2 prices');
   
@@ -51,5 +51,28 @@ function getMaxProfitV2(stockPricesYesterday) {
     /** update min price to be lowest we've seen so far AFTER updating max profit */
     minPrice = Math.min(minPrice, currentPrice);
   }
+
   return maxProfit;
+};
+
+/** greedy - O(n) time & O(n) space */
+function getProductsOfAllIntsExceptAtIndex(array) {
+  if (array.length === 1) throw new Error('Getting products requires at least 2 integers');
+
+  let productsOfAllIntsExceptAtIndex = [];
+  let productSoFar = 1;
+
+  for (let i = 0; i < array.length; i++) {
+    productsOfAllIntsExceptAtIndex[i] = productSoFar;
+    productSoFar *= array[i];
+  }
+
+  productSoFar = 1;
+
+  for (let j = array.length - 1; j >= 0; j--) {
+    productsOfAllIntsExceptAtIndex[j] *= productSoFar;
+    productSoFar *= array[j];
+  }
+
+  return productsOfAllIntsExceptAtIndex;
 };

@@ -119,6 +119,7 @@ function telephoneWordsV2(digitString) {
       return results.push(built);
     } else {
       keypad[digitString[index]].forEach(digit => {
+        /** not += b/c don't want to reassign built, just want to pass in a value */
         recurse(built + digit, index + 1);
       });
     }
@@ -126,4 +127,25 @@ function telephoneWordsV2(digitString) {
 
   recurse('', 0);
   return results;
+};
+
+function coinSums(total) {
+  const coins = [1,2,5,10,20,50,100,200];
+  let solutionCount = 0;
+
+  const recurse = function(solution, index) {
+    if (solution > total) {
+      recurse(solution - coins[index], index + 1);
+    } else if (solution === total) {
+      /** += b/c want to reassign the value of solutionCount */
+      console.log('here is our base case', solution);
+      return solutionCount += 1; 
+    } else {
+      console.log('here is our solution', solution);
+      recurse(solution + coins[index], index);
+    }
+  };
+
+  recurse(0, 0);
+  return solutionCount;
 };

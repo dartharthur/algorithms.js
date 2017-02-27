@@ -31,3 +31,26 @@ import * as trees from './toy-problem-collection/trees';
 //   };
 
 // };
+
+// function coinSums (total) {
+//   // Write your code here, and
+//   // return your final answer.
+//   var coins = [1,2,5,10,20,50,100,200];
+//   var solutionCounter = 0;
+  
+//   var recursiveCoinCounter = function(options, built) {
+//     if (total === built) {
+//       solutionCounter++;
+//       return;
+//     }
+//     for (var i = 0; i < options.length; i++) {
+//       if (built < total) {
+//         recursiveCoinCounter(options.slice(i), built+options[i]);
+//       }
+//     }
+//   };
+  
+//   recursiveCoinCounter(coins, 0);
+  
+//   return solutionCounter;
+// };
