@@ -1,4 +1,5 @@
 import * as arrays from './toy-problem-collection/arrays';
+import * as dynamicProgramming from './toy-problem-collection/dynamic-programming';
 import * as jsFundamentals from './toy-problem-collection/js-fundamentals';
 import * as linkedLists from './toy-problem-collection/linked-lists';
 import * as logic from './toy-problem-collection/logic';

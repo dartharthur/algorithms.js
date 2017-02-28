@@ -129,23 +129,23 @@ function telephoneWordsV2(digitString) {
   return results;
 };
 
-function coinSums(total) {
-  const coins = [1,2,5,10,20,50,100,200];
-  let solutionCount = 0;
+// function coinSums(total) {
+//   const coins = [1,2,5,10,20,50,100,200];
+//   let solutionCount = 0;
 
-  const recurse = function(solution, index) {
-    if (solution > total) {
-      recurse(solution - coins[index], index + 1);
-    } else if (solution === total) {
-      /** += b/c want to reassign the value of solutionCount */
-      console.log('here is our base case', solution);
-      return solutionCount += 1; 
-    } else {
-      console.log('here is our solution', solution);
-      recurse(solution + coins[index], index);
-    }
-  };
+//   const recurse = function(solution, index) {
+//     if (solution > total) {
+//       recurse(solution - coins[index], index + 1);
+//     } else if (solution === total) {
+//       /** += b/c want to reassign the value of solutionCount */
+//       console.log('here is our base case', solution);
+//       return solutionCount += 1; 
+//     } else {
+//       console.log('here is our solution', solution);
+//       recurse(solution + coins[index], index);
+//     }
+//   };
 
-  recurse(0, 0);
-  return solutionCount;
-};
+//   recurse(0, 0);
+//   return solutionCount;
+// };
