@@ -26,7 +26,7 @@ function climbStairsV2(n) {
   return solutions[n];
 };
 
-/** top down - O(n) Time * O(n) Space */
+/** top down - O(n) Time & O(n) Space */
 const climbStairsV3 = (function() {
   const memo = {};
   function f(n) {
@@ -50,3 +50,37 @@ const climbStairsV3 = (function() {
 // expected output: 8
 // actual output: 8
 // console.log(climbStairsV3(5));
+
+/** recursive solution */
+function rPathsToWork(e, s) {
+  let solutionCount = 0;
+  if (e === 0 || s === 0) return 1;
+  solutionCount = rPathsToWork(e - 1, s) + rPathsToWork(e, s - 1);
+  return solutionCount;
+};
+
+/** top-down (memoization) */
+const tdPathsToWork = (function() {
+  const memo = {};
+  function f(e, s) {
+    let solutionCount;
+    if (memo[JSON.stringify([e,s])]) {
+      solutionCount = memo[JSON.stringify([e,s])];
+    } else {
+      if (e === 0 || s === 0) {
+        memo[JSON.stringify([e,s])] = 1;
+        memo[JSON.stringify([s,e])] = 1;
+      } else {
+        memo[JSON.stringify([e,s])] = f(e - 1, s) + f(e, s - 1);
+      }
+      solutionCount = memo[JSON.stringify([e,s])];
+    }
+    // console.log('here is our cache', memo);
+    return solutionCount;
+  }
+  return f;
+})();
+
+// expected output: 6
+// actual output: 6
+console.log(tdPathsToWork(2,2));
