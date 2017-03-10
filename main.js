@@ -8,6 +8,7 @@ import * as permutations from './toy-problem-collection/permutations';
 import * as sortingAlgorithms from './toy-problem-collection/sorting-algorithms';
 import * as strings from './toy-problem-collection/strings';
 import * as trees from './toy-problem-collection/trees';
+import * as qs from './toy-problem-collection/queues-stacks';
 // function mergeSort(arr){
   
 //   if (arr.length < 2) return arr;
@@ -55,3 +56,48 @@ import * as trees from './toy-problem-collection/trees';
   
 //   return solutionCounter;
 // };
+
+// var Stack = function() {
+//   var storage = [];
+
+//   this.push = function(val){
+//     storage.push(val);
+//   };
+
+//   this.pop = function(){
+//     let temp = storage[storage.length - 1];
+//     storage.pop();
+//     return temp;
+//   };
+
+//   this.size = function(){
+//     return storage.length;
+//   };
+// };
+
+// var Queue = function() {
+
+//   var inbox = new Stack();
+//   var outbox = new Stack();
+
+//   this.enqueue = function(val){
+//     inbox.push(val);
+//   };
+
+//   this.dequeue = function(){
+//     let temp;
+//     while(inbox.size() > 1) {
+//       outbox.push(inbox.pop());
+//     }
+//     temp = inbox.pop();
+//     while(outbox.size() > 0) {
+//       inbox.push(outbox.pop());
+//     }
+//     return temp;
+//   };
+
+//   this.size = function(){
+//     return inbox.size();
+//   };
+// };
+

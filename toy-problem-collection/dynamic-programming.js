@@ -110,7 +110,7 @@ function tdPathsToWorkV2(e, s) {
 };
 
 /** bottom up */
-function buPathsToWorks(e, s) {
+function buPathsToWork(e, s) {
   const map = [];
   for (let i = 0; i <= s; i++) {
     let row = [];
