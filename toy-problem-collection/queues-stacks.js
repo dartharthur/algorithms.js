@@ -1,5 +1,5 @@
-var Stack = function() {
-  var storage = [];
+const Stack = function() {
+  let storage = [];
 
   this.push = function(val) {
     storage.push(val);
@@ -15,10 +15,10 @@ var Stack = function() {
   };
 };
 
-var Queue = function() {
+const Queue = function() {
 
-  var inbox = new Stack();
-  var outbox = new Stack();
+  let inbox = new Stack();
+  let outbox = new Stack();
 
   this.enqueue = function(val) {
     inbox.push(val);
