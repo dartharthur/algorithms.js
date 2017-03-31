@@ -119,16 +119,16 @@ let numbersToPlace = {
 };
 
 function numberToEnglish(number) {
-  let storage = [];
-  let source = number;
-  let factor = 1;
-  let englishNumber = '';
-  if (number <= 10) return numbersToWords[number];
+  if (number === 0) return numbersToWords[number];
+  if (number <= 19) return tensToEnglish(number);
+  if (number <= 999) return hundredsToEnglish(number);
   if (numbersToPlace[number]) return 'one' + ' ' + numbersToPlace[number];
-  if (source <= 999) return hundredsToEnglish(source);
-  while(source) {
-    storage.unshift(source % 1000);
-    source = Math.floor(source / 1000);
+  let englishNumber = '';
+  let storage = [];
+  let factor = 1;
+  while (number) {
+    storage.unshift(number % 1000);
+    number = Math.floor(number / 1000);
     factor *= 1000;
   }
   factor /= 1000;
@@ -152,18 +152,18 @@ function hundredsToEnglish(number) {
 }
 
 function tensToEnglish(number) {
+  if (number >= 1 && number <= 19) return numbersToWords[number];
   let englishNumber = '';
   let factor = 1;
   let built = 0;
-  let source = number;
-  while(source) {
-    if (source >= 10 && source <= 19) {
-      return englishNumber = numbersToWords[source];
+  while (number) {
+    if (number >= 10 && number <= 19) {
+      return englishNumber = numbersToWords[number];
     } else {
-      built = (source % 10) * factor;
+      built = (number % 10) * factor;
       built === 0 ? englishNumber : englishNumber = numbersToWords[built] + '-' + englishNumber;
     }
-    source = Math.floor(source / 10);
+    number = Math.floor(number / 10);
     factor *= 10;
   }
   englishNumber = englishNumber.slice(0, -1);
