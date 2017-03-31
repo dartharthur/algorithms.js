@@ -119,44 +119,53 @@ let numbersToPlace = {
 };
 
 function numberToEnglish(number) {
-  let factor = 1;
-  let built = 0;
+  let storage = [];
   let source = number;
+  let factor = 1;
   let englishNumber = '';
+  if (number <= 10) return numbersToWords[number];
+  if (numbersToPlace[number]) return 'one' + ' ' + numbersToPlace[number];
+  if (source <= 999) return hundredsToEnglish(source);
   while(source) {
-    if (factor < 100 && built < 20) {
-      built = built + (source % 10) * factor;
-      numbersToWords[built] ? englishNumber = numbersToWords[built] : englishNumber;
-    } else {
-      built = factor;
-      englishNumber = numbersToWords[source] + ' ' + numbersToPlace[built] + ' ' + englishNumber;
-    }
-    source = Math.floor(source / 10);
-    factor *= 10;
+    storage.unshift(source % 1000);
+    source = Math.floor(source / 1000);
+    factor *= 1000;
   }
-  return englishNumber;
+  factor /= 1000;
+  for (let i = 0; i < storage.length; i++) {
+    let current = storage[i];
+    englishNumber += ' ' + hundredsToEnglish(current);
+    englishNumber = englishNumber.trim();
+    if (factor !== 1) englishNumber += ' ' + numbersToPlace[factor];
+    factor /= 1000;
+  }
+  return englishNumber.trim();
 }
 
-console.log(numberToEnglish(528))
+function hundredsToEnglish(number) {
+  if (number <= 99) return tensToEnglish(number);
+  let englishNumber = '';
+  let tens = number % 100;
+  let hundreds = Math.floor(number / 100);
+  englishNumber = numbersToWords[hundreds] + ' ' + 'hundred' + ' ' + tensToEnglish(tens);
+  return englishNumber.trim();
+}
 
-function x(number) {
+function tensToEnglish(number) {
+  let englishNumber = '';
   let factor = 1;
   let built = 0;
   let source = number;
-  let englishNumber = '';
   while(source) {
     if (source >= 10 && source <= 19) {
       return englishNumber = numbersToWords[source];
     } else {
       built = (source % 10) * factor;
-      console.log(built);
-      englishNumber = numbersToWords[built] + '-' + englishNumber;
+      built === 0 ? englishNumber : englishNumber = numbersToWords[built] + '-' + englishNumber;
     }
     source = Math.floor(source / 10);
     factor *= 10;
   }
   englishNumber = englishNumber.slice(0, -1);
-  return englishNumber;
+  return englishNumber.trim();
 }
-
-console.log(x(17));
