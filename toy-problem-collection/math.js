@@ -75,3 +75,88 @@ function isPalindromeV2(number) {
   
   return true;
 };
+
+let numbersToWords = {
+  0: 'zero',
+  1: 'one',
+  2: 'two',
+  3: 'three',
+  4: 'four',
+  5: 'five',
+  6: 'six',
+  7: 'seven',
+  8: 'eight',
+  9: 'nine',
+  10: 'ten',
+  11: 'eleven',
+  12: 'twelve',
+  13: 'thirteen',
+  14: 'fourteen',
+  15: 'fifteen',
+  16: 'sixteen',
+  17: 'seventeen',
+  18: 'eighteen',
+  19: 'nineteen',
+  20: 'twenty',
+  30: 'thirty',
+  40: 'forty',
+  50: 'fifty',
+  60: 'sixty',
+  70: 'seventy',
+  80: 'eighty',
+  90: 'ninety',
+};
+
+let numbersToPlace = {
+  10: 'ten',
+  100: 'hundred',
+  1000: 'thousand',
+  1000000: 'million',
+  1000000000: 'billion',
+  1000000000000: 'trillion',
+  1000000000000000: 'quadrillion',
+  1000000000000000000: 'quintillion',
+};
+
+function numberToEnglish(number) {
+  let factor = 1;
+  let built = 0;
+  let source = number;
+  let englishNumber = '';
+  while(source) {
+    if (factor < 100 && built < 20) {
+      built = built + (source % 10) * factor;
+      numbersToWords[built] ? englishNumber = numbersToWords[built] : englishNumber;
+    } else {
+      built = factor;
+      englishNumber = numbersToWords[source] + ' ' + numbersToPlace[built] + ' ' + englishNumber;
+    }
+    source = Math.floor(source / 10);
+    factor *= 10;
+  }
+  return englishNumber;
+}
+
+console.log(numberToEnglish(528))
+
+function x(number) {
+  let factor = 1;
+  let built = 0;
+  let source = number;
+  let englishNumber = '';
+  while(source) {
+    if (source >= 10 && source <= 19) {
+      return englishNumber = numbersToWords[source];
+    } else {
+      built = (source % 10) * factor;
+      console.log(built);
+      englishNumber = numbersToWords[built] + '-' + englishNumber;
+    }
+    source = Math.floor(source / 10);
+    factor *= 10;
+  }
+  englishNumber = englishNumber.slice(0, -1);
+  return englishNumber;
+}
+
+console.log(x(17));
