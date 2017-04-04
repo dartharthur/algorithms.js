@@ -129,13 +129,11 @@ function numberToEnglish(number) {
   while (number) {
     storage.unshift(number % 1000);
     number = Math.floor(number / 1000);
-    factor *= 1000;
+    !!number ? factor *= 1000 : factor;
   }
-  factor /= 1000;
   for (let i = 0; i < storage.length; i++) {
     let current = storage[i];
     englishNumber += ' ' + hundredsToEnglish(current);
-    englishNumber = englishNumber.trim();
     if (factor !== 1) englishNumber += ' ' + numbersToPlace[factor];
     factor /= 1000;
   }

@@ -97,9 +97,11 @@ function spyOn(fn) {
   };
   
   spyFunc.returned = function(val) {
+    let flag = false;
     for (let key in answerKey) {
-      return answerKey[key] === val;
+      answerKey[key] === val ? flag = true : flag;
     }
+    return flag;
   };
   return spyFunc;
 };
