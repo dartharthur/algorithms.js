@@ -45,3 +45,30 @@ function rotateMatrix(matrix, dir = 1) {
     return rotatedMatrix;
   }
 }
+
+let test = [[1,2,3],[4,5,6],[7,8,9]];
+
+function spiralTraversal(matrix) {
+  let result = [];
+  let topLevel = 0;
+  let bottomLevel = matrix.length - 1;
+
+  // while(result.length < matrix.length * matrix[0].length) {
+    for (let i = topLevel; i < matrix[topLevel].length; i++) {
+      result.push(matrix[topLevel][i]);
+    }
+    for (let i = topLevel + 1; i < bottomLevel; i++) {
+      result.push(matrix[i][bottomLevel])
+    }
+    for (let i = bottomLevel; i >= 0; i--) {
+      result.push(matrix[bottomLevel][i]);
+    }
+    for (let i = bottomLevel - 1; i > topLevel; i--) {
+      result.push(matrix[i][topLevel]);
+    }
+  // }
+
+  return result;
+}
+
+console.log(spiralTraversal(test));
