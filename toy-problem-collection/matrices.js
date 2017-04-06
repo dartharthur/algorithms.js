@@ -46,29 +46,41 @@ function rotateMatrix(matrix, dir = 1) {
   }
 }
 
-let test = [[1,2,3],[4,5,6],[7,8,9]];
-
 function spiralTraversal(matrix) {
   let result = [];
-  let topLevel = 0;
-  let bottomLevel = matrix.length - 1;
+  let firstRow = 0, firstCol = 0;
+  let lastCol = matrix[0].length - 1;
+  let lastRow = matrix.length - 1;
+  let i;
 
-  // while(result.length < matrix.length * matrix[0].length) {
-    for (let i = topLevel; i < matrix[topLevel].length; i++) {
-      result.push(matrix[topLevel][i]);
+  while (firstRow <= lastRow && firstCol <= lastCol) {
+    i = firstCol;
+    while (i <= lastCol) {
+      result.push(matrix[firstRow][i++]);
     }
-    for (let i = topLevel + 1; i < bottomLevel; i++) {
-      result.push(matrix[i][bottomLevel])
-    }
-    for (let i = bottomLevel; i >= 0; i--) {
-      result.push(matrix[bottomLevel][i]);
-    }
-    for (let i = bottomLevel - 1; i > topLevel; i--) {
-      result.push(matrix[i][topLevel]);
-    }
-  // }
+    firstRow++;
 
+    i = firstRow;
+    while (i <= lastRow) {
+      result.push(matrix[i++][lastCol]);
+    }
+    lastCol--;
+
+    if (firstRow <= lastRow) {
+      i = lastCol;
+      while (i >= firstCol) {
+        result.push(matrix[lastRow][i--]);
+      }
+      lastRow--;
+    }
+
+    if (firstCol <= lastCol) {
+      i = lastRow;
+      while (i >= firstRow) {
+        result.push(matrix[i--][firstCol]);
+      }
+      firstCol++;
+    }
+  }
   return result;
 }
-
-console.log(spiralTraversal(test));
