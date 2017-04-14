@@ -120,3 +120,28 @@ function highestProductOf3(arrayOfInts) {
   }
   return highestProductOf3;
 }
+
+/** bug in concatenation of some nested arrays - need to refactor implementation */
+function uniqueAndFlatten(array) {
+
+  let flatten = function(array) {
+    if (array.length === 1) {
+      return [array[0]];
+    } else if (typeof array[array.length - 1] === 'object') {
+      return flatten(array[array.length - 1]).concat(flatten(array.slice(0, array.length - 1)));
+    } else {
+      return flatten(array.slice(0, array.length - 1)).concat(array[array.length - 1]);
+    }
+  }
+
+  let flattenedArray = flatten(array);
+  let uniqueArray = [];
+  for (i = 0; i < flattenedArray.length; i++) {
+    let current = flattenedArray[i];
+    if (!uniqueArray.includes(current)) {
+      uniqueArray.push(current);
+    }
+  }
+
+  return uniqueArray;
+}
