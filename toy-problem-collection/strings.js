@@ -178,3 +178,18 @@ printStaircaseV2 = n => {
   }
   return staircase.slice(0, staircase.length - 1);
 };
+
+const isBalanced = function(str) {
+  let balance = [];
+  let openingBrackets = ['[', '(', '{'];
+  let brackets = {
+    ')': '(',
+    '}': '{',
+    ']': '['
+  };
+  [...str].forEach(function(char) {
+    if (openingBrackets.indexOf(char) !== -1) balance.push(char);
+    if (brackets[char]) brackets[char] === balance[balance.length - 1] ? balance.pop() : balance.push(char);
+  });
+  return balance.length === 0;
+}
