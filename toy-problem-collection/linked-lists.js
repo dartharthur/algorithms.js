@@ -36,7 +36,7 @@ function insertFromEnd(linkedList, value, offset) {
   return linkedList;
 }
 
-function reverseLinkedListV1(linkedList) {
+function reverseLinkedList(linkedList) {
   if (linkedList.next === null) return linkedList;
   let prev = null;
   let next = linkedList.next;
@@ -50,7 +50,7 @@ function reverseLinkedListV1(linkedList) {
   return linkedList;
 }
 
-function reverseLinkedListV2(linkedList) {
+function reverseLinkedListClean(linkedList) {
   let current = linkedList;
   let reverse = null;
   let head = current;
@@ -61,4 +61,15 @@ function reverseLinkedListV2(linkedList) {
     head = current;
   }
   return reverse;
+}
+
+function hasCycle(linkedList) {
+  let trailer = linkedList;
+  let runner = linkedList;
+  while (trailer.next && runner.next && runner.next.next) {
+    trailer = trailer.next;
+    runner = runner.next.next;
+    if (trailer.value === runner.value) return true;
+  }
+  return false;
 }
