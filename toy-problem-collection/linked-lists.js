@@ -35,3 +35,30 @@ function insertFromEnd(linkedList, value, offset) {
 
   return linkedList;
 }
+
+function reverseLinkedListV1(linkedList) {
+  if (linkedList.next === null) return linkedList;
+  let prev = null;
+  let next = linkedList.next;
+  while (next) {
+    linkedList.next = prev;
+    prev = linkedList;
+    linkedList = next;
+    next = next.next;
+  }
+  linkedList.next = prev;
+  return linkedList;
+}
+
+function reverseLinkedListV2(linkedList) {
+  let current = linkedList;
+  let reverse = null;
+  let head = current;
+  while (current) {
+    current = current.next;
+    head.next = reverse;
+    reverse = head;
+    head = current;
+  }
+  return reverse;
+}
