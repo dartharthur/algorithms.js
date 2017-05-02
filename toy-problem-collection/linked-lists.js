@@ -69,7 +69,7 @@ function hasCycle(linkedList) {
   while (trailer.next && runner.next && runner.next.next) {
     trailer = trailer.next;
     runner = runner.next.next;
-    if (trailer.value === runner.value) return true;
+    if (trailer === runner) return true;
   }
   return false;
 }

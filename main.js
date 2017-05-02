@@ -8,6 +8,7 @@ import * as permutations from './toy-problem-collection/permutations';
 import * as sortingAlgorithms from './toy-problem-collection/sorting-algorithms';
 import * as strings from './toy-problem-collection/strings';
 import * as trees from './toy-problem-collection/trees';
+import * as bst from './toy-problem-collection/binary-search-trees';
 import * as qs from './toy-problem-collection/queues-stacks';
 import * as matrices from './toy-problem-collection/matrices';
 // function mergeSort(arr){

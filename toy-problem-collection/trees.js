@@ -3,11 +3,6 @@ function Tree(value) {
   this.children = [];
 };
 
-function BinaryTreeNode(value) {
-  this.value = value;
-  this.left = this.right = null;
-}
-
 Tree.prototype.DFSelect = function(filter) {    
   /**
    * note:
@@ -114,33 +109,4 @@ Tree.prototype.removeChild = function(child) {
   } else {
     throw new Error("That node is not an immediate child of this tree");
   }
-};
-
-/** 
- * note:
- * this solution needs to be modified
- * only solves for topmost left and right subtrees but child nodes must also be balanced
- * i.e. if a child node's left and right subtrees have height diff > 1 then whole tree is unbalanced
- */
-const isBalanced = function(root) {
-  let leftDepth = 0;
-  let rightDepth = 0;
-  
-  const findDepth = function(node) {
-    let q = [ [node, 1] ];
-    let current;
-    let depth;
-    while (q.length > 0) {
-      current = q.shift();
-      current[0] && current[0].left && q.push([current[0].left, current[1] + 1]);
-      current[0] && current[0].right && q.push(current[0].right, current[1] + 1);
-      current[0] ? depth = current[1] : depth;
-    } 
-    return depth;
-  };
-  
-  root.left ? leftDepth = findDepth(root.left) : leftDepth;
-  root.right ? rightDepth = findDepth(root.right) : rightDepth;
-
-  return Math.abs(leftDepth - rightDepth) > 1 ? false : true;
 };
