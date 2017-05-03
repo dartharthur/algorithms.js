@@ -4,17 +4,30 @@ class BST {
     this.left = null;
     this.right = null;
   }
+
   inOrderTraverse(callback) {
-    // depth-first traversal
-    if (this.left === null) return callback(this);
-    if (this.right === null) return callback(this);
+    if (!this.left && !this.right) return callback(this);
 
     if (this.left) this.left.inOrderTraverse(callback);
     callback(this);
     if (this.right) this.right.inOrderTraverse(callback);
   }
+
   validate() {
-    // fill me in
+    let flag = true;
+    let previousNodeValue = Number.MIN_SAFE_INTEGER;
+
+    let checkOrder = node => {
+      if (flag === false) return;
+      if (previousNodeValue > node.value) {
+        flag = false;
+        return;
+      }
+      previousNodeValue = node.value;
+    }
+
+    this.inOrderTraverse(checkOrder);
+    return flag;
   }
 }
 
@@ -23,7 +36,7 @@ class BST {
  */
 const assert = (expect, describe) => expect
   ? console.log('Test Passed:', describe)
-  : console.error('Test Failed:', describe)
+  : console.error('Test Failed:', describe);
 
 let BST1 = new BST(4);
 BST1.left = new BST(2);
@@ -44,7 +57,6 @@ BST2.right.left = new BST(5);
 let sorted = [];
 let pushToSorted = node => sorted.push(node.value);
 BST1.inOrderTraverse(pushToSorted);
-console.log(sorted);
 
 assert(
   [1,2,3,4,5,6,7].every((val,i) => val === sorted[i]),
