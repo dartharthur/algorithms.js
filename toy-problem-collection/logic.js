@@ -8,6 +8,42 @@
  * For example, if there are 4 stones in the heap, then you will never win the game: 
  * no matter 1, 2, or 3 stones you remove, the last stone will always be removed by your friend.
  */
-canWinNim = n => {
+function canWinNim(n) {
   return (n % 4 !== 0);
-};
+}
+
+/** naive solution */
+function analyzeMeetings(meetings) {
+  let i = 0;
+  let mergedMeetings = [];
+  let sortedMeetings = sortMeetings(meetings);
+
+  while(sortedMeetings[i + 1]) {
+   let meeting = mergeMeetings(sortedMeetings[i], sortedMeetings[i + 1]);
+   if (meeting) {
+     mergedMeetings.push(meeting);
+     i += 2;
+     if ((sortedMeetings.length - 1) - i === 0) mergedMeetings.push(sortedMeetings[i]);
+   } else {
+     mergedMeetings.push(sortedMeetings[i]);
+     i += 1;
+     if ((sortedMeetings.length - 1) - i === 0) mergedMeetings.push(sortedMeetings[i]);
+   }
+  }
+
+  return mergedMeetings;
+}
+
+function mergeMeetings(first, second) {
+  if (first.endTime >= second.startTime) {
+    return { startTime: first.startTime, endTime: first.endTime > second.endTime ? first.endTime : second.endTime };
+  }
+}
+
+function sortMeetings(meetings) {
+  return meetings.sort((a, b) => {
+    if (a.startTime > b.startTime) return 1;
+    if (a .startTime < b.startTime) return -1;
+    return 0;
+  });
+}
