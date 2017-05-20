@@ -121,31 +121,6 @@ function highestProductOf3(arrayOfInts) {
   return highestProductOf3;
 }
 
-/** bug in concatenation of some nested arrays - need to refactor implementation */
-function uniqueAndFlatten(array) {
-
-  let flatten = function(array) {
-    if (array.length === 1) {
-      return [array[0]];
-    } else if (typeof array[array.length - 1] === 'object') {
-      return flatten(array[array.length - 1]).concat(flatten(array.slice(0, array.length - 1)));
-    } else {
-      return flatten(array.slice(0, array.length - 1)).concat(array[array.length - 1]);
-    }
-  }
-
-  let flattenedArray = flatten(array);
-  let uniqueArray = [];
-  for (i = 0; i < flattenedArray.length; i++) {
-    let current = flattenedArray[i];
-    if (!uniqueArray.includes(current)) {
-      uniqueArray.push(current);
-    }
-  }
-
-  return uniqueArray;
-}
-
 /**
  * @param {number[]} nums
  * @return {void} Do not return anything, modify nums in-place instead.
@@ -154,4 +129,13 @@ function moveZeroes(nums) {
     for (let i = nums.length - 1; i >= 0; i--) {
         if (nums[i] === 0) nums.push(nums.splice(i, 1)[0]);
     }
+}
+
+function containsDuplicates(nums) {
+  const library = new Set();
+  for (let i = 0; i < nums.length; i++) {
+      if (library.has(nums[i])) return true;
+      library.add(nums[i]);
+  }
+  return false;
 }
