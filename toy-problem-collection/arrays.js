@@ -126,16 +126,20 @@ function highestProductOf3(arrayOfInts) {
  * @return {void} Do not return anything, modify nums in-place instead.
  */
 function moveZeroes(nums) {
-    for (let i = nums.length - 1; i >= 0; i--) {
-        if (nums[i] === 0) nums.push(nums.splice(i, 1)[0]);
-    }
+  for (let i = nums.length - 1; i >= 0; i--) {
+    if (nums[i] === 0) nums.push(nums.splice(i, 1)[0]);
+  }
 }
 
+/**
+ * @param {number[]} nums
+ * @return {boolean}
+ */
 function containsDuplicates(nums) {
   const library = new Set();
   for (let i = 0; i < nums.length; i++) {
-      if (library.has(nums[i])) return true;
-      library.add(nums[i]);
+    if (library.has(nums[i])) return true;
+    library.add(nums[i]);
   }
   return false;
 }
