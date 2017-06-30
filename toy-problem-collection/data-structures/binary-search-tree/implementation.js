@@ -1,4 +1,4 @@
-export default class BST {
+class BST {
   constructor(val) {
     this.value = val;
     this.left = null;
@@ -30,3 +30,5 @@ export default class BST {
     return flag;
   }
 }
+
+export default BST;
