@@ -6,15 +6,13 @@
  * @param {ListNode} head
  * @return {boolean}
  */
-const hasCycleS1 = head => {
+export const hasCycleS1 = (head) => {
+  let linkedList = head;
   const nodesSeen = new Set();
-  while (head !== null) {
-    if (nodesSeen.has(head)) {
-      return true;
-    } else {
-      nodesSeen.add(head)
-    }
-    head = head.next;
+  while (linkedList !== null) {
+    if (nodesSeen.has(linkedList)) return true;
+    nodesSeen.add(linkedList);
+    linkedList = linkedList.next;
   }
   return false;
 };
@@ -27,7 +25,7 @@ const hasCycleS1 = head => {
  * @param {ListNode} head
  * @return {boolean}
  */
-const hasCyleS2 = head => {
+export const hasCyleS2 = (head) => {
   if (head === null || head.next === null) return false;
   let trailer = head;
   let runner = head;

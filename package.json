@@ -4,7 +4,8 @@
   "description": "Collection of interview challenges written in JavaScript.",
   "main": "index.js",
   "scripts": {
-    "start": "lite-server"
+    "start": "lite-server",
+    "test": "jasmine"
   },
   "repository": {
     "type": "git",
@@ -21,11 +22,13 @@
     "eslint": "^3.19.0",
     "eslint-config-airbnb-base": "^11.2.0",
     "eslint-plugin-import": "^2.6.1",
+    "jasmine": "^2.6.0",
     "jspm": "^0.16.52",
     "lite-server": "^2.2.2"
   },
   "dependencies": {
-    "bootstrap": "^3.3.7"
+    "bootstrap": "^3.3.7",
+    "requirejs": "^2.3.3"
   },
   "jspm": {
     "dependencies": {},
