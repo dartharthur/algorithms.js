@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "lite-server",
-    "test": "jasmine"
+    "test": "jest --coverage",
+    "test:watch": "jest --watch"
   },
   "repository": {
     "type": "git",
@@ -18,23 +19,17 @@
   },
   "homepage": "https://github.com/kamirdjanian/toy-problems#readme",
   "devDependencies": {
-    "bower": "^1.8.0",
+    "babel-core": "^6.25.0",
+    "babel-preset-env": "^1.6.0",
     "eslint": "^3.19.0",
     "eslint-config-airbnb-base": "^11.2.0",
     "eslint-plugin-import": "^2.6.1",
-    "jasmine": "^2.6.0",
-    "jspm": "^0.16.52",
-    "lite-server": "^2.2.2"
+    "jest": "^20.0.4"
   },
-  "dependencies": {
-    "bootstrap": "^3.3.7",
-    "requirejs": "^2.3.3"
-  },
-  "jspm": {
-    "dependencies": {},
-    "devDependencies": {
-      "traceur": "github:jmcriffey/bower-traceur@0.0.93",
-      "traceur-runtime": "github:jmcriffey/bower-traceur-runtime@0.0.93"
-    }
+  "jest": {
+    "testEnvironment": "jest-environment-node",
+    "collectCoverageFrom": [
+      "*.js"
+    ]
   }
 }
