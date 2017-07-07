@@ -1,36 +1,42 @@
 import BinaryTree from '../implementation';
-import mergeBinaryTrees from '../problems/mergeBinaryTrees';
+import mergeBinaryTreesR from '../problems/mergeBinaryTrees';
 
-const tree1 = new BinaryTree(1);
-tree1.left = new BinaryTree(3);
-tree1.right = new BinaryTree(2);
-tree1.left.left = new BinaryTree(5);
+const treeA = new BinaryTree(5);
+treeA.left = new BinaryTree(7);
+treeA.right = new BinaryTree(4);
 
-const tree2 = new BinaryTree(2);
-tree2.left = new BinaryTree(1);
-tree2.right = new BinaryTree(3);
-tree2.left.right = new BinaryTree(4);
-tree2.right.right = new BinaryTree(7);
+const treeB = new BinaryTree(3);
+treeB.left = new BinaryTree(2);
+treeB.right = new BinaryTree(1);
 
-const mergedTree1 = new BinaryTree(3);
-mergedTree1.left = new BinaryTree(4);
-mergedTree1.right = new BinaryTree(5);
-mergedTree1.left.left = new BinaryTree(5);
-mergedTree1.left.right = new BinaryTree(4);
-mergedTree1.right.right = new BinaryTree(7);
+const treeAB = new BinaryTree(8);
+treeAB.left = new BinaryTree(9);
+treeAB.right = new BinaryTree(5);
 
-const tree3 = new BinaryTree(5);
-tree3.left = new BinaryTree(7);
-tree3.right = new BinaryTree(4);
+const treeC = new BinaryTree(1);
+treeC.left = new BinaryTree(3);
+treeC.right = new BinaryTree(2);
+treeC.left.left = new BinaryTree(5);
 
-const tree4 = new BinaryTree(3);
-tree4.left = new BinaryTree(2);
-tree4.right = new BinaryTree(1);
+const treeD = new BinaryTree(2);
+treeD.left = new BinaryTree(1);
+treeD.right = new BinaryTree(3);
+treeD.left.right = new BinaryTree(4);
+treeD.right.right = new BinaryTree(7);
 
-const mergedTree2 = new BinaryTree(8);
-mergedTree2.left = new BinaryTree(9);
-mergedTree2.right = new BinaryTree(5);
+const treeCD = new BinaryTree(3);
+treeCD.left = new BinaryTree(4);
+treeCD.right = new BinaryTree(5);
+treeCD.left.left = new BinaryTree(5);
+treeCD.left.right = new BinaryTree(4);
+treeCD.right.right = new BinaryTree(7);
 
-test('it should return a merged binary tree', () => {
-  expect(mergeBinaryTrees(tree3, tree4)).toEqual(mergedTree2);
+
+describe('The recursive implementation of mergeBinaryTrees', () => {
+  test('should merge two simple binary trees.', () => {
+    expect(mergeBinaryTreesR(treeA, treeB)).toEqual(treeAB);
+  });
+  test('should merge two complex binary trees.', () => {
+    expect(mergeBinaryTreesR(treeC, treeD)).toEqual(treeCD);
+  });
 });
