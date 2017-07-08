@@ -100,34 +100,6 @@ function longestCommonPrefixVertical(strings) {
   return strings[0];
 };
 
-romanToInt = s => {
-  const values = {
-    I: 1,
-    V: 5,
-    X: 10,
-    L: 50,
-    C: 100,
-    D: 500,
-    M: 1000
-  };
-  let sum = 0;
-  if (s === '') return null;
-  for (let i = 0; i < s.length; i++) {
-    if (!values[s[i]]) return null;
-    if (values[s[i + 1]] > values[s[i]]) sum -= values[s[i]];
-    else sum += values[s[i]];
-  }
-  return sum;
-};
-
-/**
- * very simple implementation
- * to-do: explore various ways to reverse string
- */
-reverseString = s => {
-  return s.split('').reverse().join('');
-};
-
 printStaircaseV1 = n => {
   if (n <= 0) return '';
   let staircase = '';

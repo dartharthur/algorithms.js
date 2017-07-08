@@ -1,8 +1,6 @@
 /**
  * Time Complexity: O(n)
  * Space Complexity: O(n)
- */
-/**
  * @param {ListNode} head
  * @return {boolean}
  */
@@ -20,8 +18,6 @@ export const hasCycleS1 = (head) => {
 /**
  * Time Complexity: O(n + k) where k is at most length of cycle
  * Space Complexity: O(1)
- */
-/**
  * @param {ListNode} head
  * @return {boolean}
  */

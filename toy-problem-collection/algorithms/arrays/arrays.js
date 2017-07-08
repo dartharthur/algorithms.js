@@ -1,24 +1,3 @@
-/**
- * Given an array of integers, every element appears twice except for one. Find that single one.
- * Note: Your algorithm should have a linear runtime complexity. Could you implement it without using extra memory?
- */
-
-/** using extra memory */
-function singleNumberV1(nums) {
-  let storage = {};
-  nums.forEach(num => {
-    storage[num] ? storage[num] = 'duplicate' : storage[num] = 'unique';
-  });
-  for (let value in storage) {
-    if (storage[value] === 'unique') return +value; 
-  }
-};
-
-/** not using extra memory */
-function singleNumberV2(nums) {
-  
-};
-
 /** O(n) - traverses array twice */
 function getMaxProfitV1(stockPricesYesterday) {
   let maxNumAtIndex = 0;
@@ -143,9 +122,3 @@ function containsDuplicates(nums) {
   }
   return false;
 }
-
-// given array of arrays, flatten array and remove duplicates
-// approach would be to recurisvely iterate through and store
-// values in an object
-// then when done, grab the keys of the object as my resultant array
-// or put them in a set? hashset might be better
