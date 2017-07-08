@@ -143,3 +143,9 @@ function containsDuplicates(nums) {
   }
   return false;
 }
+
+// given array of arrays, flatten array and remove duplicates
+// approach would be to recurisvely iterate through and store
+// values in an object
+// then when done, grab the keys of the object as my resultant array
+// or put them in a set? hashset might be better

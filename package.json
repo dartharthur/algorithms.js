@@ -1,7 +1,7 @@
 {
   "name": "toy-problems",
   "version": "1.0.0",
-  "description": "Collection of interview challenges written in JavaScript.",
+  "description": "Collection of toy problems written in JavaScript.",
   "main": "index.js",
   "scripts": {
     "start": "lite-server",
