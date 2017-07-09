@@ -1,4 +1,6 @@
-class BST {
+/* eslint-disable consistent-return */
+
+class BinarySearchTreeNode {
   constructor(val) {
     this.value = val;
     this.left = null;
@@ -17,18 +19,18 @@ class BST {
     let flag = true;
     let previousNodeValue = Number.MIN_SAFE_INTEGER;
 
-    let checkOrder = node => {
+    const checkOrder = (node) => {
       if (flag === false) return;
       if (previousNodeValue > node.value) {
         flag = false;
         return;
       }
       previousNodeValue = node.value;
-    }
+    };
 
     this.inOrderTraverse(checkOrder);
     return flag;
   }
 }
 
-export default BST;
+export default BinarySearchTreeNode;

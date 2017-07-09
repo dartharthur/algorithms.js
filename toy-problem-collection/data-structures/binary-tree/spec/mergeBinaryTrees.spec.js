@@ -1,4 +1,4 @@
-import BinaryTree from '../implementation';
+import BinaryTree from '../BinaryTree';
 import mergeBinaryTreesR from '../problems/mergeBinaryTrees';
 
 const treeA = new BinaryTree(5);

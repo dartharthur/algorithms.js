@@ -1,19 +1,4 @@
-const Stack = function() {
-  let storage = [];
-
-  this.push = function(val) {
-    storage.push(val);
-  };
-
-  this.pop = function() {
-    let temp = storage.pop();
-    return temp;
-  };
-
-  this.size = function() {
-    return storage.length;
-  };
-};
+import Stack from '../Stack';
 
 const Queue = function() {
 

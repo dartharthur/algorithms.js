@@ -1,4 +1,4 @@
-import BST from './implementation';
+import BST from './BinarySearchTree';
 
 const assert = (expect, describe) => expect
   ? console.log('Test Passed:', describe)
