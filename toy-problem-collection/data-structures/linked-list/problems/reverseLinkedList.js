@@ -1,18 +1,19 @@
-const reverseLinkedList = linkedList => {
-  if (linkedList.next === null) return linkedList;
+export const reverseLinkedList = linkedList => {
+  let linkedListRef = linkedList;
+  if (linkedListRef.next === null) return linkedListRef;
   let prev = null;
-  let next = linkedList.next;
+  let next = linkedListRef.next;
   while (next) {
-    linkedList.next = prev;
-    prev = linkedList;
-    linkedList = next;
+    linkedListRef.next = prev;
+    prev = linkedListRef;
+    linkedListRef = next;
     next = next.next;
   }
-  linkedList.next = prev;
-  return linkedList;
+  linkedListRef.next = prev;
+  return linkedListRef;
 };
 
-const reverseLinkedListClean = linkedList => {
+export const reverseLinkedListClean = linkedList => {
   let current = linkedList;
   let reverse = null;
   let head = current;

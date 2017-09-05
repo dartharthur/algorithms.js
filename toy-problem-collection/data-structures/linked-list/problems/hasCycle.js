@@ -4,7 +4,7 @@
  * @param {ListNode} head
  * @return {boolean}
  */
-export const hasCycleS1 = (head) => {
+export const hasCycleS1 = head => {
   let linkedList = head;
   const nodesSeen = new Set();
   while (linkedList !== null) {
@@ -21,7 +21,7 @@ export const hasCycleS1 = (head) => {
  * @param {ListNode} head
  * @return {boolean}
  */
-export const hasCyleS2 = (head) => {
+export const hasCyleS2 = head => {
   if (head === null || head.next === null) return false;
   let trailer = head;
   let runner = head;
