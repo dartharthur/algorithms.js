@@ -1,15 +1,16 @@
 function Tree(value) {
   this.value = value;
   this.children = [];
-};
+}
 
-Tree.prototype.DFSelect = function(filter) {    
+Tree.prototype.DFSelect = function(filter) {
   /**
    * note:
    * if want to use a counter for tree depth 
    * pass it in as a parameter to the recurse function 
    * this way the counter tracks tree depth via the call stack
-   */  
+   */
+
   let result = [];
   recurse = (node, nodeDepth) => {
     if (filter(node.value, nodeDepth)) {
@@ -17,14 +18,14 @@ Tree.prototype.DFSelect = function(filter) {
     }
     node.children.forEach(child => {
       recurse(child, nodeDepth + 1);
-    })
+    });
   };
   recurse(this, 0);
   return result;
 };
 
 Tree.prototype.BFSelect = function(filter) {
-  let q = [ [this, 0] ];
+  let q = [[this, 0]];
   let results = [];
   let current;
 
@@ -48,14 +49,14 @@ Tree.prototype.BFSelect = function(filter) {
 
 Tree.prototype.countLeaves = function() {
   let counter = 0;
-  recurse = (node) => {
+  recurse = node => {
     if (node.children.length === 0) {
       counter++;
       return;
     }
     node.children.forEach(child => {
       recurse(child);
-    })
+    });
   };
   recurse(this);
   return counter;
@@ -67,7 +68,7 @@ Tree.prototype.map = function(callback) {
     current.children.forEach(child => {
       let newChild = newCurrent.addChild(callback(child.value));
       recurse(child, newChild);
-    })
+    });
   };
   recurse(this, mappedTree);
   return mappedTree;
@@ -77,7 +78,7 @@ Tree.prototype.addChild = function(child) {
   if (!child || !(child instanceof Tree)) {
     child = new Tree(child);
   }
-  if (!this.isDescendant(child)){
+  if (!this.isDescendant(child)) {
     this.children.push(child);
   } else {
     throw new Error("That child is already a child of this tree");
@@ -105,7 +106,7 @@ Tree.prototype.removeChild = function(child) {
   var index = this.children.indexOf(child);
   if (index !== -1) {
     // remove the child
-    this.children.splice(index,1);
+    this.children.splice(index, 1);
   } else {
     throw new Error("That node is not an immediate child of this tree");
   }
