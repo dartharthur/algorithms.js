@@ -2,7 +2,6 @@
  * @param {string} str
  * @return {boolean}
  */
-
 const sanitizeString = str => {
   let built = `""`;
   for (let i = 0; i < str.length; i += 1) {
