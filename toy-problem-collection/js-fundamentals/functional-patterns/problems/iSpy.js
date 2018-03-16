@@ -3,7 +3,6 @@ const spyOn = fn => {
   let callCount = 0;
 
   const spyFunc = (...args) => {
-    // let args = Array.from(arguments);
     const answer = fn(...args);
     args.forEach(arg => (answerKey[JSON.stringify(arg)] = answer));
     callCount += 1;
@@ -15,9 +14,10 @@ const spyOn = fn => {
   spyFunc.wasCalledWith = arg => !!answerKey[JSON.stringify(arg)];
 
   spyFunc.returned = val => {
+    const values = Object.values(answerKey);
     let flag = false;
-    for (let key in answerKey) {
-      answerKey[key] === val ? (flag = true) : flag;
+    if (values.includes(val)) {
+      flag = true;
     }
     return flag;
   };
