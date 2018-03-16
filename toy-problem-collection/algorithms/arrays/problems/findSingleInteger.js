@@ -4,9 +4,11 @@
  * @param {integer[]} arrayOfInts
  * @return {integer}
  */
-export const findSingleIntegerM = (arrayOfInts) => {
+export const findSingleIntegerM = arrayOfInts => {
   const unique = new Set();
-  arrayOfInts.forEach(int => (unique.has(int) ? unique.delete(int) : unique.add(int)));
+  arrayOfInts.forEach(
+    int => (unique.has(int) ? unique.delete(int) : unique.add(int))
+  );
   return [...unique][0];
 };
 
@@ -16,6 +18,6 @@ export const findSingleIntegerM = (arrayOfInts) => {
  * @param {integer[]} arrayOfInts
  * @return {integer}
  */
-export const findSingleIntegerNM = (arrayOfInts) => {
+export const findSingleIntegerNM = arrayOfInts => {
   /** must use bit-manipulation in order to solve with linear runtime and constant space */
 };
