@@ -1,26 +1,29 @@
-import Stack from '../Stack';
+import Stack from "../Stack";
 
-const Queue = function() {
+class QueueStack {
+  constructor() {
+    this._inbox = new Stack();
+    this._outbox = new Stack();
+  }
 
-  let inbox = new Stack();
-  let outbox = new Stack();
+  enqueue(val) {
+    this._inbox.push(val);
+  }
 
-  this.enqueue = function(val) {
-    inbox.push(val);
-  };
-
-  this.dequeue = function() {
-    while (inbox.size() >= 1) {
-      outbox.push(inbox.pop());
+  dequeue() {
+    while (this._inbox.size() >= 1) {
+      this._outbox.push(this._inbox.pop());
     }
-    let temp = outbox.pop();
-    while (outbox.size() >= 1) {
-      inbox.push(outbox.pop());
+    const temp = this._outbox.pop();
+    while (this._outbox.size() >= 1) {
+      this._inbox.push(this._outbox.pop());
     }
     return temp;
-  };
+  }
 
-  this.size = function() {
-    return inbox.size();
-  };
-};
+  size() {
+    return this._inbox.size();
+  }
+}
+
+export default QueueStack;

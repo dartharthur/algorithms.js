@@ -1,19 +1,19 @@
 class Stack {
   constructor() {
-    this.storage = [];
+    this._storage = [];
   }
 
   push(val) {
-    this.storage.push(val);
+    this._storage.push(val);
   }
 
   pop() {
-    const temp = this.storage.pop();
+    const temp = this._storage.pop();
     return temp;
   }
 
   size() {
-    return this.storage.length;
+    return this._storage.length;
   }
 }
 

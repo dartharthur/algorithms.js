@@ -8,6 +8,7 @@ describe("A QueueStack", () => {
     const a = queueStack.dequeue();
     expect(a).toBe(5);
   });
+
   test("should return the correct size.", () => {
     const queueStack = new QueueStack();
     queueStack.enqueue(5);

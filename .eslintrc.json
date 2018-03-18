@@ -5,7 +5,8 @@
       "warn",
       {
         "allowTernary": true,
-        "allowShortCircuit": true
+        "allowShortCircuit": true,
+        "singleQuote": true
       }
     ],
     "prettier/prettier": "error"
