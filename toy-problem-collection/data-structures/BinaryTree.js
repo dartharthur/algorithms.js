@@ -1,8 +1,8 @@
 /* eslint-disable consistent-return */
 
 class BinaryTreeNode {
-  constructor(val) {
-    this.value = val;
+  constructor(value) {
+    this.value = value;
     this.left = null;
     this.right = null;
   }

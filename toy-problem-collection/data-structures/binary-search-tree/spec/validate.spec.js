@@ -1,11 +1,7 @@
-import BST from "./BinarySearchTree";
+import BST from "../../BinaryTree";
+import isValidBST from "../problems/validate";
 
-const assert = (expect, describe) =>
-  expect
-    ? console.log("Test Passed:", describe)
-    : console.error("Test Failed:", describe);
-
-let BST1 = new BST(4);
+const BST1 = new BST(4);
 BST1.left = new BST(2);
 BST1.right = new BST(6);
 BST1.left.left = new BST(1);
@@ -13,7 +9,7 @@ BST1.left.right = new BST(3);
 BST1.right.right = new BST(7);
 BST1.right.left = new BST(5);
 
-let BST2 = new BST(4);
+const BST2 = new BST(4);
 BST2.left = new BST(2);
 BST2.right = new BST(6);
 BST2.left.left = new BST(1);
@@ -21,23 +17,26 @@ BST2.left.right = new BST(5);
 BST2.right.right = new BST(7);
 BST2.right.left = new BST(5);
 
-let sorted = [];
-let pushToSorted = node => sorted.push(node.value);
-BST1.inOrderTraverse(pushToSorted);
+const BST3 = new BST(0);
+BST3.right = new BST(1);
 
-/*
-assert(
-  [1,2,3,4,5,6,7].every((val,i) => val === sorted[i]),
-  'inOrderTraverse should execute callback on every node in order'
-);
+const BST4 = new BST(1);
+BST4.right = new BST(1);
 
-assert(
-  BST1.validate() === true, 
-  'validate should return true for valid BST'
-);
+describe("isValidBST", () => {
+  test("should determine if a binary tree is a valid binary search tree.", () => {
+    expect(isValidBST(BST1)).toBe(true);
+  });
 
-assert(
-  BST2.validate() === false, 
-  'validate should return false for invalid BST'
-);
-*/
+  test("should determine if a binary tree is a valid binary search tree.", () => {
+    expect(isValidBST(BST2)).toBe(false);
+  });
+
+  test("should determine if a binary tree is a valid binary search tree.", () => {
+    expect(isValidBST(BST3)).toBe(true);
+  });
+
+  test("should determine if a binary tree is a valid binary search tree.", () => {
+    expect(isValidBST(BST4)).toBe(false);
+  });
+});
