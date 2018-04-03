@@ -1,8 +1,9 @@
-import BST from './BinarySearchTree';
+import BST from "./BinarySearchTree";
 
-const assert = (expect, describe) => expect
-  ? console.log('Test Passed:', describe)
-  : console.error('Test Failed:', describe);
+const assert = (expect, describe) =>
+  expect
+    ? console.log("Test Passed:", describe)
+    : console.error("Test Failed:", describe);
 
 let BST1 = new BST(4);
 BST1.left = new BST(2);

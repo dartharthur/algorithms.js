@@ -1,5 +1,5 @@
-import BinaryTree from '../BinaryTree';
-import mergeBinaryTreesR from '../problems/mergeBinaryTrees';
+import BinaryTree from "../../BinaryTree";
+import mergeBinaryTreesR from "../problems/mergeBinaryTrees";
 
 const treeA = new BinaryTree(5);
 treeA.left = new BinaryTree(7);
@@ -31,12 +31,11 @@ treeCD.left.left = new BinaryTree(5);
 treeCD.left.right = new BinaryTree(4);
 treeCD.right.right = new BinaryTree(7);
 
-
-describe('The recursive implementation of mergeBinaryTrees', () => {
-  test('should merge two simple binary trees.', () => {
+describe("The recursive implementation of mergeBinaryTrees", () => {
+  test("should merge two simple binary trees.", () => {
     expect(mergeBinaryTreesR(treeA, treeB)).toEqual(treeAB);
   });
-  test('should merge two complex binary trees.', () => {
+  test("should merge two complex binary trees.", () => {
     expect(mergeBinaryTreesR(treeC, treeD)).toEqual(treeCD);
   });
 });
