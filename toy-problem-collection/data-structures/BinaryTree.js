@@ -1,18 +1,20 @@
 /* eslint-disable consistent-return */
 const Stack = require("./Stack");
 
-class BinaryTreeNode {
-  constructor(value, strategy) {
-    this.value = value;
-    this.left = null;
-    this.right = null;
-    this.strategy = strategy;
-  }
+const BinaryTree = function(strategy) {
+  return class BinaryTreeNode {
+    constructor(value) {
+      this.value = value;
+      this.left = null;
+      this.right = null;
+      this._strategy = strategy;
+    }
 
-  logValues() {
-    this.strategy();
-  }
-}
+    logValues() {
+      this._strategy();
+    }
+  };
+};
 
 const inOrderRecursiveTraversalStrategy = function() {
   if (this.left === null && this.right === null) {
@@ -20,13 +22,13 @@ const inOrderRecursiveTraversalStrategy = function() {
   }
 
   if (this.left) {
-    this.left.strategy();
+    this.left._strategy();
   }
 
   console.log(this.value);
 
   if (this.right) {
-    this.right.strategy();
+    this.right._strategy();
   }
 };
 
@@ -45,23 +47,27 @@ const inOrderIterativeTraversalStrategy = function() {
   }
 };
 
-const BST1 = new BinaryTreeNode(4, inOrderIterativeTraversalStrategy);
-BST1.left = new BinaryTreeNode(2, inOrderIterativeTraversalStrategy);
-BST1.right = new BinaryTreeNode(6, inOrderIterativeTraversalStrategy);
-BST1.left.left = new BinaryTreeNode(1, inOrderIterativeTraversalStrategy);
-BST1.left.right = new BinaryTreeNode(3, inOrderIterativeTraversalStrategy);
-BST1.right.right = new BinaryTreeNode(7, inOrderIterativeTraversalStrategy);
-BST1.right.left = new BinaryTreeNode(5, inOrderIterativeTraversalStrategy);
+const BT1 = BinaryTree(inOrderIterativeTraversalStrategy);
 
-const BST2 = new BinaryTreeNode(4, inOrderRecursiveTraversalStrategy);
-BST2.left = new BinaryTreeNode(2, inOrderRecursiveTraversalStrategy);
-BST2.right = new BinaryTreeNode(6, inOrderRecursiveTraversalStrategy);
-BST2.left.left = new BinaryTreeNode(1, inOrderRecursiveTraversalStrategy);
-BST2.left.right = new BinaryTreeNode(3, inOrderRecursiveTraversalStrategy);
-BST2.right.right = new BinaryTreeNode(7, inOrderRecursiveTraversalStrategy);
-BST2.right.left = new BinaryTreeNode(5, inOrderRecursiveTraversalStrategy);
+const BST1 = new BT1(4);
+BST1.left = new BT1(2);
+BST1.right = new BT1(6);
+BST1.left.left = new BT1(1);
+BST1.left.right = new BT1(3);
+BST1.right.right = new BT1(7);
+BST1.right.left = new BT1(5);
 
-// BST1.logValues();
-// BST2.logValues();
+const BT2 = BinaryTree(inOrderRecursiveTraversalStrategy);
 
-module.exports = BinaryTreeNode;
+const BST2 = new BT2(4);
+BST2.left = new BT2(2);
+BST2.right = new BT2(6);
+BST2.left.left = new BT2(1);
+BST2.left.right = new BT2(3);
+BST2.right.right = new BT2(7);
+BST2.right.left = new BT2(5);
+
+BST1.logValues();
+BST2.logValues();
+
+module.exports = BinaryTree;

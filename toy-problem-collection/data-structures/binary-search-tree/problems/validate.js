@@ -55,11 +55,11 @@ const iterative = function(root) {
     return true;
   }
 
+  const stack = new Stack();
   let prev = null;
   let current = root;
-  let stack = [];
 
-  while (stack.length !== 0 || current !== null) {
+  while (!stack.isEmpty() || current !== null) {
     if (current !== null) {
       stack.push(current);
       current = current.left;
