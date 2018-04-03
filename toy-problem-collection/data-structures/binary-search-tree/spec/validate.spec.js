@@ -1,5 +1,5 @@
-import BST from "../../BinaryTree";
-import isValidBST from "../problems/validate";
+const BST = require("../../BinaryTree");
+const isValidBST = require("../problems/validate");
 
 const BST1 = new BST(4);
 BST1.left = new BST(2);
@@ -23,20 +23,50 @@ BST3.right = new BST(1);
 const BST4 = new BST(1);
 BST4.right = new BST(1);
 
-describe("isValidBST", () => {
+const BST5 = new BST(5);
+BST5.left = new BST(14);
+BST5.left.left = new BST(1);
+
+describe("A recursive implementation of isValidBST", () => {
   test("should determine if a binary tree is a valid binary search tree.", () => {
-    expect(isValidBST(BST1)).toBe(true);
+    expect(isValidBST.recursive(BST1)).toBe(true);
   });
 
   test("should determine if a binary tree is a valid binary search tree.", () => {
-    expect(isValidBST(BST2)).toBe(false);
+    expect(isValidBST.recursive(BST2)).toBe(false);
   });
 
   test("should determine if a binary tree is a valid binary search tree.", () => {
-    expect(isValidBST(BST3)).toBe(true);
+    expect(isValidBST.recursive(BST3)).toBe(true);
   });
 
   test("should determine if a binary tree is a valid binary search tree.", () => {
-    expect(isValidBST(BST4)).toBe(false);
+    expect(isValidBST.recursive(BST4)).toBe(false);
+  });
+
+  test("should determine if a binary tree is a valid binary search tree.", () => {
+    expect(isValidBST.recursive(BST5)).toBe(false);
+  });
+});
+
+describe("An iterative implementation of isValidBST", () => {
+  test("should determine if a binary tree is a valid binary search tree.", () => {
+    expect(isValidBST.iterative(BST1)).toBe(true);
+  });
+
+  test("should determine if a binary tree is a valid binary search tree.", () => {
+    expect(isValidBST.iterative(BST2)).toBe(false);
+  });
+
+  test("should determine if a binary tree is a valid binary search tree.", () => {
+    expect(isValidBST.iterative(BST3)).toBe(true);
+  });
+
+  test("should determine if a binary tree is a valid binary search tree.", () => {
+    expect(isValidBST.iterative(BST4)).toBe(false);
+  });
+
+  test("should determine if a binary tree is a valid binary search tree.", () => {
+    expect(isValidBST.iterative(BST5)).toBe(false);
   });
 });

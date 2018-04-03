@@ -61,5 +61,7 @@ BST2.left.right = new BinaryTreeNode(3, inOrderRecursiveTraversalStrategy);
 BST2.right.right = new BinaryTreeNode(7, inOrderRecursiveTraversalStrategy);
 BST2.right.left = new BinaryTreeNode(5, inOrderRecursiveTraversalStrategy);
 
-BST1.logValues();
-BST2.logValues();
+// BST1.logValues();
+// BST2.logValues();
+
+module.exports = BinaryTreeNode;

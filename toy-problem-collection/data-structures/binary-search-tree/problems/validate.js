@@ -1,4 +1,4 @@
-import Stack from "../../Stack";
+const Stack = require("../../Stack");
 
 /**
  * Definition for a binary tree node.
@@ -7,11 +7,12 @@ import Stack from "../../Stack";
  *     this.left = this.right = null;
  * }
  */
+
 /**
  * @param {BinaryTreeNode} root
  * @return {boolean}
  */
-export const isValidBST = function(root) {
+const recursive = function(root) {
   if (!root) {
     return true;
   }
@@ -49,13 +50,34 @@ export const isValidBST = function(root) {
   return flag;
 };
 
-export const isValidBST_i = function(root) {
-  const stack = new Stack();
+const iterative = function(root) {
+  if (!root) {
+    return true;
+  }
 
+  let prev = null;
   let current = root;
-  let flag = true;
+  let stack = [];
 
-  while (stack.size() && current !== null) {}
+  while (stack.length !== 0 || current !== null) {
+    if (current !== null) {
+      stack.push(current);
+      current = current.left;
+    } else {
+      current = stack.pop();
+      if (prev === null) {
+        prev = current;
+      } else if (prev.value >= current.value) {
+        return false;
+      }
+      prev = current;
+      current = current.right;
+    }
+  }
 
-  return flag;
+  return true;
 };
+
+const isValidBST = { recursive, iterative };
+
+module.exports = isValidBST;
