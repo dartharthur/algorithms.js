@@ -15,6 +15,10 @@ class Stack {
   size() {
     return this._storage.length;
   }
+
+  isEmpty() {
+    return this.size() === 0;
+  }
 }
 
-export default Stack;
+module.exports = Stack;

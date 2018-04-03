@@ -1,3 +1,5 @@
+import Stack from "../../Stack";
+
 /**
  * Definition for a binary tree node.
  * function BinaryTreeNode(value) {
@@ -9,7 +11,7 @@
  * @param {BinaryTreeNode} root
  * @return {boolean}
  */
-const isValidBST = function(root) {
+export const isValidBST = function(root) {
   if (!root) {
     return true;
   }
@@ -47,4 +49,13 @@ const isValidBST = function(root) {
   return flag;
 };
 
-export default isValidBST;
+export const isValidBST_i = function(root) {
+  const stack = new Stack();
+
+  let current = root;
+  let flag = true;
+
+  while (stack.size() && current !== null) {}
+
+  return flag;
+};
