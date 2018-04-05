@@ -14,14 +14,30 @@ class BinaryTreeAnalyzer {
     this.strategy = strategy;
   }
 
-  logValues(node) {
-    this.strategy(node, console.log);
+  printValues(node, action = console.log) {
+    this.strategy(node, action);
   }
 }
 
+const preOrderRecursiveTraversalStrategy = function(node, action) {
+  if (node.left === null && node.right === null) {
+    return action(node.value);
+  }
+
+  action(node.value);
+
+  if (node.left) {
+    preOrderRecursiveTraversalStrategy(node.left, action);
+  }
+
+  if (node.right) {
+    preOrderRecursiveTraversalStrategy(node.right, action);
+  }
+};
+
 const inOrderRecursiveTraversalStrategy = function(node, action) {
   if (node.left === null && node.right === null) {
-    return console.log(node.value);
+    return action(node.value);
   }
 
   if (node.left) {
@@ -33,6 +49,22 @@ const inOrderRecursiveTraversalStrategy = function(node, action) {
   if (node.right) {
     inOrderRecursiveTraversalStrategy(node.right, action);
   }
+};
+
+const postOrderRecursiveTraversalStrategy = function(node, action) {
+  if (node.left === null && node.right === null) {
+    return action(node.value);
+  }
+
+  if (node.left) {
+    postOrderRecursiveTraversalStrategy(node.left, action);
+  }
+
+  if (node.right) {
+    postOrderRecursiveTraversalStrategy(node.right, action);
+  }
+
+  action(node.value);
 };
 
 const inOrderIterativeTraversalStrategy = function(node, action) {
@@ -50,18 +82,11 @@ const inOrderIterativeTraversalStrategy = function(node, action) {
   }
 };
 
-const analyzerA = new BinaryTreeAnalyzer(inOrderRecursiveTraversalStrategy);
-const analyzerB = new BinaryTreeAnalyzer(inOrderIterativeTraversalStrategy);
-
-const BST = new BinaryTreeNode(4);
-BST.left = new BinaryTreeNode(2);
-BST.right = new BinaryTreeNode(6);
-BST.left.left = new BinaryTreeNode(1);
-BST.left.right = new BinaryTreeNode(3);
-BST.right.right = new BinaryTreeNode(7);
-BST.right.left = new BinaryTreeNode(5);
-
-analyzerA.logValues(BST);
-analyzerB.logValues(BST);
-
-module.exports = BinaryTreeNode;
+module.exports = {
+  BinaryTreeNode,
+  BinaryTreeAnalyzer,
+  preOrderRecursiveTraversalStrategy,
+  inOrderRecursiveTraversalStrategy,
+  postOrderRecursiveTraversalStrategy,
+  inOrderIterativeTraversalStrategy
+};
