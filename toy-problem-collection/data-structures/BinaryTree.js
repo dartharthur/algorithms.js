@@ -67,14 +67,35 @@ const postOrderRecursiveTraversalStrategy = function(node, action) {
   action(node.value);
 };
 
+const preOrderIterativeTraversalStrategy = function(node, action) {
+  const stack = new Stack();
+  let current = node;
+  while (true) {
+    if (current !== null) {
+      action(current.value);
+      stack.push(current);
+      current = current.left;
+    } else {
+      if (stack.isEmpty()) {
+        break;
+      }
+      current = stack.pop();
+      current = current.right;
+    }
+  }
+};
+
 const inOrderIterativeTraversalStrategy = function(node, action) {
   const stack = new Stack();
   let current = node;
-  while (!stack.isEmpty() || current !== null) {
+  while (true) {
     if (current !== null) {
       stack.push(current);
       current = current.left;
     } else {
+      if (stack.isEmpty()) {
+        break;
+      }
       current = stack.pop();
       action(current.value);
       current = current.right;
@@ -88,5 +109,6 @@ module.exports = {
   preOrderRecursiveTraversalStrategy,
   inOrderRecursiveTraversalStrategy,
   postOrderRecursiveTraversalStrategy,
+  preOrderIterativeTraversalStrategy,
   inOrderIterativeTraversalStrategy
 };
