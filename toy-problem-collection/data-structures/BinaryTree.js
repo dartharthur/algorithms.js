@@ -68,8 +68,13 @@ const postOrderRecursiveTraversalStrategy = function(node, action) {
 };
 
 const preOrderIterativeTraversalStrategy = function(node, action) {
+  if (!node) {
+    return;
+  }
+
   const stack = new Stack();
   let current = node;
+
   while (true) {
     if (current !== null) {
       action(current.value);
@@ -86,8 +91,13 @@ const preOrderIterativeTraversalStrategy = function(node, action) {
 };
 
 const inOrderIterativeTraversalStrategy = function(node, action) {
+  if (!node) {
+    return;
+  }
+
   const stack = new Stack();
   let current = node;
+
   while (true) {
     if (current !== null) {
       stack.push(current);
@@ -103,6 +113,34 @@ const inOrderIterativeTraversalStrategy = function(node, action) {
   }
 };
 
+const postOrderIterativeTraversalStrategy = function(node, action) {
+  if (!node) {
+    return;
+  }
+
+  const s1 = new Stack();
+  const s2 = new Stack();
+
+  let current = node;
+  s1.push(current);
+
+  while (!s1.isEmpty()) {
+    current = s1.pop();
+    s2.push(current);
+    if (current.left) {
+      s1.push(current.left);
+    }
+    if (current.right) {
+      s1.push(current.right);
+    }
+  }
+
+  while (!s2.isEmpty()) {
+    let bt = s2.pop();
+    action(bt.value);
+  }
+};
+
 module.exports = {
   BinaryTreeNode,
   BinaryTreeAnalyzer,
@@ -110,5 +148,6 @@ module.exports = {
   inOrderRecursiveTraversalStrategy,
   postOrderRecursiveTraversalStrategy,
   preOrderIterativeTraversalStrategy,
-  inOrderIterativeTraversalStrategy
+  inOrderIterativeTraversalStrategy,
+  postOrderIterativeTraversalStrategy
 };

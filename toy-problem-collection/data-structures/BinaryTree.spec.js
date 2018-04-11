@@ -5,7 +5,8 @@ const {
   inOrderRecursiveTraversalStrategy,
   postOrderRecursiveTraversalStrategy,
   preOrderIterativeTraversalStrategy,
-  inOrderIterativeTraversalStrategy
+  inOrderIterativeTraversalStrategy,
+  postOrderIterativeTraversalStrategy
 } = require("./BinaryTree");
 
 const binaryTree = new BinaryTreeNode(10);
@@ -68,5 +69,16 @@ describe("Traversing a Binary Tree using a inOrderIterativeTraversalStrategy", (
     const analyzer = new BinaryTreeAnalyzer(inOrderIterativeTraversalStrategy);
     analyzer.printValues(binaryTree, value => values.push(value));
     expect(values).toEqual(inOrderResult);
+  });
+});
+
+describe("Traversing a Binary Tree using a postOrderIterativeTraversalStrategy", () => {
+  test("should visit each BinaryTreeNode post-order.", () => {
+    const values = [];
+    const analyzer = new BinaryTreeAnalyzer(
+      postOrderIterativeTraversalStrategy
+    );
+    analyzer.printValues(binaryTree, value => values.push(value));
+    expect(values).toEqual(postOrderResult);
   });
 });
