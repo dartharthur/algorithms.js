@@ -1,23 +1,29 @@
 class Stack {
   constructor() {
-    this._storage = [];
+    this._storage = {};
+    this._size = 0;
   }
 
-  push(val) {
-    this._storage.push(val);
+  push(value) {
+    this._storage[this._size] = value;
+    this._size += 1;
   }
 
   pop() {
-    const temp = this._storage.pop();
-    return temp;
+    if (this._size) {
+      this._size -= 1;
+      const result = this._storage[this._size];
+      delete this._storage[this._size];
+      return result;
+    }
   }
 
   size() {
-    return this._storage.length;
+    return this._size;
   }
 
   isEmpty() {
-    return this.size() === 0;
+    return this._size === 0;
   }
 }
 
