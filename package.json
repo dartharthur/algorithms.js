@@ -4,16 +4,8 @@
   "description": "Collection of toy problems written in JavaScript.",
   "main": "index.js",
   "scripts": {
-    "start": "lite-server",
     "test": "jest",
-    "test:watch": "jest --watch",
-    "precommit": "lint-staged"
-  },
-  "lint-staged": {
-    "*.js": [
-      "prettier --write",
-      "git add"
-    ]
+    "test:watch": "jest --watch"
   },
   "repository": {
     "type": "git",
@@ -33,9 +25,7 @@
     "eslint-config-prettier": "^2.3.0",
     "eslint-plugin-import": "^2.6.1",
     "eslint-plugin-prettier": "^2.2.0",
-    "husky": "^0.14.3",
     "jest": "^20.0.4",
-    "lint-staged": "^4.0.3",
     "prettier": "^1.5.3"
   },
   "jest": {
