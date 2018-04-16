@@ -1,5 +1,6 @@
 /* eslint-disable consistent-return */
 const Stack = require("./Stack");
+const Queue = require("./Queue");
 
 class BinaryTreeNode {
   constructor(value) {
@@ -141,6 +142,30 @@ const postOrderIterativeTraversalStrategy = function(node, action) {
   }
 };
 
+const levelOrderTraversalStrategy = function(node, action) {
+  if (!node) {
+    return;
+  }
+
+  const q = new Queue();
+
+  let current = node;
+  q.enqueue(current);
+
+  while (!q.isEmpty()) {
+    current = q.dequeue();
+    action(current.value);
+
+    if (current.left) {
+      q.enqueue(current.left);
+    }
+
+    if (current.right) {
+      q.enqueue(current.right);
+    }
+  }
+};
+
 module.exports = {
   BinaryTreeNode,
   BinaryTreeAnalyzer,
@@ -149,5 +174,6 @@ module.exports = {
   postOrderRecursiveTraversalStrategy,
   preOrderIterativeTraversalStrategy,
   inOrderIterativeTraversalStrategy,
-  postOrderIterativeTraversalStrategy
+  postOrderIterativeTraversalStrategy,
+  levelOrderTraversalStrategy
 };
