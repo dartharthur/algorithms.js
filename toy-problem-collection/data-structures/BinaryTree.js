@@ -1,6 +1,6 @@
 /* eslint-disable consistent-return */
-const Stack = require("./Stack");
-const Queue = require("./Queue");
+const Stack = require('./Stack');
+const Queue = require('./Queue');
 
 class BinaryTreeNode {
   constructor(value) {
@@ -20,6 +20,11 @@ class BinaryTreeAnalyzer {
   }
 }
 
+/**
+ * print root
+ * print everything on left
+ * print everything on right
+ */
 const preOrderRecursiveTraversalStrategy = function(node, action) {
   if (node.left === null && node.right === null) {
     return action(node.value);
@@ -34,38 +39,6 @@ const preOrderRecursiveTraversalStrategy = function(node, action) {
   if (node.right) {
     preOrderRecursiveTraversalStrategy(node.right, action);
   }
-};
-
-const inOrderRecursiveTraversalStrategy = function(node, action) {
-  if (node.left === null && node.right === null) {
-    return action(node.value);
-  }
-
-  if (node.left) {
-    inOrderRecursiveTraversalStrategy(node.left, action);
-  }
-
-  action(node.value);
-
-  if (node.right) {
-    inOrderRecursiveTraversalStrategy(node.right, action);
-  }
-};
-
-const postOrderRecursiveTraversalStrategy = function(node, action) {
-  if (node.left === null && node.right === null) {
-    return action(node.value);
-  }
-
-  if (node.left) {
-    postOrderRecursiveTraversalStrategy(node.left, action);
-  }
-
-  if (node.right) {
-    postOrderRecursiveTraversalStrategy(node.right, action);
-  }
-
-  action(node.value);
 };
 
 const preOrderIterativeTraversalStrategy = function(node, action) {
@@ -91,6 +64,27 @@ const preOrderIterativeTraversalStrategy = function(node, action) {
   }
 };
 
+/**
+ * print everything on left
+ * print root
+ * print everything on right
+ */
+const inOrderRecursiveTraversalStrategy = function(node, action) {
+  if (node.left === null && node.right === null) {
+    return action(node.value);
+  }
+
+  if (node.left) {
+    inOrderRecursiveTraversalStrategy(node.left, action);
+  }
+
+  action(node.value);
+
+  if (node.right) {
+    inOrderRecursiveTraversalStrategy(node.right, action);
+  }
+};
+
 const inOrderIterativeTraversalStrategy = function(node, action) {
   if (!node) {
     return;
@@ -112,6 +106,27 @@ const inOrderIterativeTraversalStrategy = function(node, action) {
       current = current.right;
     }
   }
+};
+
+/**
+ * print everything on left
+ * print everything on right
+ * print root
+ */
+const postOrderRecursiveTraversalStrategy = function(node, action) {
+  if (node.left === null && node.right === null) {
+    return action(node.value);
+  }
+
+  if (node.left) {
+    postOrderRecursiveTraversalStrategy(node.left, action);
+  }
+
+  if (node.right) {
+    postOrderRecursiveTraversalStrategy(node.right, action);
+  }
+
+  action(node.value);
 };
 
 const postOrderIterativeTraversalStrategy = function(node, action) {
@@ -142,6 +157,9 @@ const postOrderIterativeTraversalStrategy = function(node, action) {
   }
 };
 
+/**
+ * print every level
+ */
 const levelOrderTraversalStrategy = function(node, action) {
   if (!node) {
     return;
@@ -175,5 +193,5 @@ module.exports = {
   preOrderIterativeTraversalStrategy,
   inOrderIterativeTraversalStrategy,
   postOrderIterativeTraversalStrategy,
-  levelOrderTraversalStrategy
+  levelOrderTraversalStrategy,
 };

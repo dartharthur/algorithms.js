@@ -7,8 +7,8 @@ const {
   preOrderIterativeTraversalStrategy,
   inOrderIterativeTraversalStrategy,
   postOrderIterativeTraversalStrategy,
-  levelOrderTraversalStrategy
-} = require("./BinaryTree");
+  levelOrderTraversalStrategy,
+} = require('./BinaryTree');
 
 const binaryTree = new BinaryTreeNode(10);
 
@@ -27,8 +27,8 @@ const inOrderResult = [5, 3, 15, 6, 10, 30, 9, 2, 8];
 const postOrderResult = [5, 3, 6, 15, 9, 8, 2, 30, 10];
 const levelOrderResut = [10, 15, 30, 3, 6, 2, 5, 9, 8];
 
-describe("Traversing a Binary Tree using a preOrderRecursiveTraversalStrategy", () => {
-  test("should visit each BinaryTreeNode pre-order.", () => {
+describe('Traversing a Binary Tree using a preOrderRecursiveTraversalStrategy', () => {
+  test('should visit each BinaryTreeNode pre-order.', () => {
     const values = [];
     const analyzer = new BinaryTreeAnalyzer(preOrderRecursiveTraversalStrategy);
     analyzer.printValues(binaryTree, value => values.push(value));
@@ -36,8 +36,8 @@ describe("Traversing a Binary Tree using a preOrderRecursiveTraversalStrategy", 
   });
 });
 
-describe("Traversing a Binary Tree using a inOrderRecursiveTraversalStrategy", () => {
-  test("should visit each BinaryTreeNode in-order.", () => {
+describe('Traversing a Binary Tree using a inOrderRecursiveTraversalStrategy', () => {
+  test('should visit each BinaryTreeNode in-order.', () => {
     const values = [];
     const analyzer = new BinaryTreeAnalyzer(inOrderRecursiveTraversalStrategy);
     analyzer.printValues(binaryTree, value => values.push(value));
@@ -45,19 +45,19 @@ describe("Traversing a Binary Tree using a inOrderRecursiveTraversalStrategy", (
   });
 });
 
-describe("Traversing a Binary Tree using a postOrderRecursiveTraversalStrategy", () => {
-  test("should visit each BinaryTreeNode post-order.", () => {
+describe('Traversing a Binary Tree using a postOrderRecursiveTraversalStrategy', () => {
+  test('should visit each BinaryTreeNode post-order.', () => {
     const values = [];
     const analyzer = new BinaryTreeAnalyzer(
-      postOrderRecursiveTraversalStrategy
+      postOrderRecursiveTraversalStrategy,
     );
     analyzer.printValues(binaryTree, value => values.push(value));
     expect(values).toEqual(postOrderResult);
   });
 });
 
-describe("Traversing a Binary Tree using a preOrderIterativeTraversalStrategy", () => {
-  test("should visit each BinaryTreeNode pre-order.", () => {
+describe('Traversing a Binary Tree using a preOrderIterativeTraversalStrategy', () => {
+  test('should visit each BinaryTreeNode pre-order.', () => {
     const values = [];
     const analyzer = new BinaryTreeAnalyzer(preOrderIterativeTraversalStrategy);
     analyzer.printValues(binaryTree, value => values.push(value));
@@ -65,8 +65,8 @@ describe("Traversing a Binary Tree using a preOrderIterativeTraversalStrategy", 
   });
 });
 
-describe("Traversing a Binary Tree using a inOrderIterativeTraversalStrategy", () => {
-  test("should visit each BinaryTreeNode in-order.", () => {
+describe('Traversing a Binary Tree using a inOrderIterativeTraversalStrategy', () => {
+  test('should visit each BinaryTreeNode in-order.', () => {
     const values = [];
     const analyzer = new BinaryTreeAnalyzer(inOrderIterativeTraversalStrategy);
     analyzer.printValues(binaryTree, value => values.push(value));
@@ -74,19 +74,19 @@ describe("Traversing a Binary Tree using a inOrderIterativeTraversalStrategy", (
   });
 });
 
-describe("Traversing a Binary Tree using a postOrderIterativeTraversalStrategy", () => {
-  test("should visit each BinaryTreeNode post-order.", () => {
+describe('Traversing a Binary Tree using a postOrderIterativeTraversalStrategy', () => {
+  test('should visit each BinaryTreeNode post-order.', () => {
     const values = [];
     const analyzer = new BinaryTreeAnalyzer(
-      postOrderIterativeTraversalStrategy
+      postOrderIterativeTraversalStrategy,
     );
     analyzer.printValues(binaryTree, value => values.push(value));
     expect(values).toEqual(postOrderResult);
   });
 });
 
-describe("Traversing a Binary Tree using a levelOrderTraversalStrategy", () => {
-  test("should visit each BinaryTreeNode level-order.", () => {
+describe('Traversing a Binary Tree using a levelOrderTraversalStrategy', () => {
+  test('should visit each BinaryTreeNode level-order.', () => {
     const values = [];
     const analyzer = new BinaryTreeAnalyzer(levelOrderTraversalStrategy);
     analyzer.printValues(binaryTree, value => values.push(value));
