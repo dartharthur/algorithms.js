@@ -1,7 +1,7 @@
 {
-  "name": "toy-problems",
+  "name": "algorithms.js",
   "version": "1.0.0",
-  "description": "Collection of toy problems written in JavaScript.",
+  "description": "Exploration of data structures and algorithms using JavaScript.",
   "main": "index.js",
   "scripts": {
     "test": "jest",

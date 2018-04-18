@@ -23,13 +23,6 @@ bt3.right.right = new BinaryTreeNode(3);
 bt3.left.left.left = new BinaryTreeNode(4);
 bt3.right.right.right = new BinaryTreeNode(4);
 
-/**
- * A height-balanced binary tree is defined as:
- * A binary tree in which the depth of the two subtrees of every node never differ by more than 1.
- * 
- * Source: https://leetcode.com/problems/balanced-binary-tree/description/
- */
-
 describe('isBalanced', () => {
   test('should determine if a binary tree is height-balanced.', () => {
     expect(isBalanced(bt1)).toBe(true);
