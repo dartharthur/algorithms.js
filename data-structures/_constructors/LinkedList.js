@@ -1,8 +1,8 @@
-class ListNode {
-  constructor(val) {
-    this.val = val || null;
+class LinkedListNode {
+  constructor(value = null) {
+    this.value = value;
     this.next = null;
   }
 }
 
-export default ListNode;
+module.exports = LinkedListNode;

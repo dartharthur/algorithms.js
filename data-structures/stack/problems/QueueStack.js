@@ -1,4 +1,4 @@
-import Stack from "../../Stack";
+import Stack from '../../_constructors/Stack';
 
 class QueueStack {
   constructor() {
