@@ -7,9 +7,9 @@ class Stack {
   }
 
   push(value) {
-    const prev = this._first;
+    const oldFirst = this._first;
     this._first = new LinkedList(value);
-    this._first.next = prev;
+    this._first.next = oldFirst;
     this._size += 1;
   }
 
@@ -27,7 +27,7 @@ class Stack {
   }
 
   isEmpty() {
-    return this.size() === 0;
+    return this._first === null;
   }
 }
 
@@ -63,4 +63,5 @@ class Stack {
     return this._size === 0;
   }
 }
- */
+
+*/
