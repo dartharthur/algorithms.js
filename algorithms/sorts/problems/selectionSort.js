@@ -9,4 +9,4 @@ const selectionSort = array => {
   return array;
 };
 
-export default selectionSort;
+module.exports = selectionSort;
