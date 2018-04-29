@@ -1,5 +1,13 @@
 const Stack = require('../Stack');
 
+/**
+ * An implementation of Djikstra's Two-Stack Algorithm for evaluating arithmetic expressions.
+ * This implementation is limited to addition, subtraction, multiplication, and division.
+ * Additionally, we assume the arithmetic expression is fully parenthesized. This is done
+ * to maintain simplicity as not fully parenthesizing means we will need some way to
+ * enforce the correct order of operations.
+ */
+
 const dijkstraTwoStack = function(expression) {
   const validOperators = new Set(['+', '-', '*', '/']);
   const operators = new Stack();
