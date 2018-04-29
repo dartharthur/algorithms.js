@@ -68,3 +68,47 @@ It is important that the `compareTo` method not perform any extraneous calcluati
 **Proof**:
 
 * Number of exchanges equals the number of inversions.
+
+## Shell Sort
+
+**Idea**:
+
+* Utilize insertion sort mechanics, but move entries more than one position at a time by `h-sorting` the array.
+* An `h-sorted` array is h interleaved sorted subsequences
+
+```
+h = 4
+
+L E E A M H L E P S O L T S X R
+
+L ----- M ----- P ----- T
+
+  E ----- H ----- S ----- S
+
+    E ----- L ----- O ----- X
+
+      A ----- E ----- L ----- R
+```
+
+**Algorithm**:
+
+* `h-sort` array for decreasing sequence of values of `h`
+* How to h-sort an array?
+    * Use insertion sort, but instead of going one back, go `h` back i.e. insertion sort with stride length `h`.
+* why?
+    * if increments are big --> generate small subarrays
+    * if increments are small --> nearly in order, array is partially sorted, insertion sort is fast
+
+**Increment Sequences**:
+
+* Shell -- `powers of two minus one` (1, 3, 7, 15, 31, 63...)
+* Knuth -- `3x + 1` (1, 4, 13, 40, 121...)
+* Sedgewick -- (1, 5, 19, 41, 109...)
+
+**Analysis**:
+
+* The worst case number of compares used by shellsort with the 3x + 1 increments is O(N<sup>3/2</sup>).
+
+* Simple idea leads to substantial performance gains.
+
+* Useful in practice --> Fast unless array size is huge.
