@@ -69,7 +69,7 @@ It is important that the `compareTo` method not perform any extraneous calcluati
 
 * Number of exchanges equals the number of inversions.
 
-## Shell Sort
+## Shellsort
 
 **Idea**:
 
@@ -112,3 +112,19 @@ L ----- M ----- P ----- T
 * Simple idea leads to substantial performance gains.
 
 * Useful in practice --> Fast unless array size is huge.
+
+## Mergesort
+
+**Goal**:
+
+* Given two sorted subarrays `a[lo]` to `a[mid]` and `a[mid + 1]` to `a[hi]`, replace with sorted subarray `a[lo]` to `a[hi]`.
+
+**Proposition**:
+
+* Mergesort uses at most N log N compares and 6N log N array accesses to sort any array of size N.
+* Mergesort uses extra space proportional to N -- array `aux[]` needs to be of size `N` for the last merge.
+
+**Definition**:
+
+* A sorting algorithm is in-place if it uses `<= c log N` extra memory.
+* Examples: Insertion sort, selection sort, shellsort.

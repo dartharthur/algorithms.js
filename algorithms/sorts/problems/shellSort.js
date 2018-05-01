@@ -10,7 +10,7 @@ const shellSort = array => {
         [array[j - h], array[j]] = [array[j], array[j - h]];
       }
     }
-    h = h / 3;
+    h = Math.floor(h / 3);
   }
   return array;
 };
