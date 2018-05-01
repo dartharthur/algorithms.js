@@ -128,3 +128,54 @@ L ----- M ----- P ----- T
 
 * A sorting algorithm is in-place if it uses `<= c log N` extra memory.
 * Examples: Insertion sort, selection sort, shellsort.
+
+## Complexity of Sorting
+
+**Computational complexity**: Framework to study efficiency of algorithms for solving a particular problem X.
+
+**Model of computation**: Allowable operations.
+
+**Cost model**: Operation count(s).
+
+**Upper bound**: Cost guarantee provided by some algorithm for X.
+
+**Lower bound**: Proven limit on cost guarantee of all algorithms for X.
+
+**Optimal algorithm**: Algorithm with be possible cost guarantee for X (ideally we can prove that upper and lower bound are the same).
+
+**Example: sorting.**
+* Model of computation: decision tree (can only access information through compares).
+* Cost model: number of compares.
+* Upper bound: ~ N log N from mergesort
+* Lower bound: ~ N log N
+* Optimal algorithm: mergesort
+
+**First goal of algorithm design**: Finding optimal algorithm.
+
+Compares? Mergesort is optimal with respect to number of compares.
+
+Space? Mergesort is not optimal with respect to space usage.
+
+Lower bound may not hold if the algorithm has information about:
+* The initial order of the input.
+* The distribution of key values.
+* The representation of the keys.
+
+Partially ordered arrays: Depending on the initial order of the input, may not need N log N compares (insertion sort requires only N - 1 compares if input array is sorted).
+
+Duplicate keys: Depending on the input distribution of duplicates, may not need N log N compares (3-way quicksort).
+
+Digital properties of keys: Can use digit/character compares instead of key compares for numbers and strings (radix sorts).
+
+## Stability
+
+A stable sort preserves the relative order of items with equal keys.
+
+Insertion sort and mergesort are stable.
+Selection sort and shellsort are not stable.
+
+Insertion sort is stable because equal items never move past each other.
+
+Selection sort is not stable because a long-distance exchange might move an item past some equal item.
+
+Any long-distance exchange, where keys are moved past other keys that might be equal, is not stable.
