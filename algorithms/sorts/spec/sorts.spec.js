@@ -3,6 +3,7 @@ const insertionSort = require('../problems/insertionSort');
 const selectionSort = require('../problems/selectionSort');
 const shellSort = require('../problems/shellSort');
 const mergeSort = require('../problems/mergeSort');
+const quickSort = require('../problems/quickSort');
 
 const aIn = [6, 2];
 const aOut = [2, 6];
@@ -18,6 +19,44 @@ const dOut = [5, 7, 23, 32, 34, 62];
 
 const eIn = [34, 7, 23, 32, 5, 62, 49, 78, 42];
 const eOut = [5, 7, 23, 32, 34, 42, 49, 62, 78];
+
+const fIn = [
+  'K',
+  'R',
+  'A',
+  'T',
+  'E',
+  'L',
+  'E',
+  'P',
+  'U',
+  'I',
+  'M',
+  'Q',
+  'C',
+  'X',
+  'O',
+  'S',
+];
+
+const fOut = [
+  'A',
+  'C',
+  'E',
+  'E',
+  'I',
+  'K',
+  'L',
+  'M',
+  'O',
+  'P',
+  'Q',
+  'R',
+  'S',
+  'T',
+  'U',
+  'X',
+];
 
 describe('bubbleSort', () => {
   test('should sort an array containing five numbers.', () => {
@@ -70,5 +109,16 @@ describe('mergeSort', () => {
 
   test('should sort an array containing nine numbers.', () => {
     expect(mergeSort(eIn)).toEqual(eOut);
+  });
+});
+
+describe('quickSort', () => {
+  test('should sort an array containing nine numbers.', () => {
+    expect(mergeSort(eIn)).toEqual(eOut);
+  });
+
+  test('should sort an array of letters.', () => {
+    quickSort(fIn);
+    expect(fIn).toEqual(fOut);
   });
 });

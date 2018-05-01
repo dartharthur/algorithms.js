@@ -113,6 +113,25 @@ L ----- M ----- P ----- T
 
 * Useful in practice --> Fast unless array size is huge.
 
+## Shuffle Sort
+
+**Proposition**:
+
+* Shuffle sort produces a uniformly random permutation (assuming real numbers generated uniformly at random) of the input array, provided no duplicate values i.e. every possible way of shuffling the deck appears with equal probability.
+
+**Goal**:
+
+* Rearrange array so that result is a uniformly random permutation in `linear time`.
+
+**Knuth Shuffle**:
+
+* In iteration `i`, pick integer `r` between `0` and `i` uniformly at random.
+* Swap `a[i]` and `a[r]`.
+* Knuth shuffle produces a uniformly random permutation in `linear time`.
+* Key: uniform random integer `r` must be between `0` and `i`.
+* Correct variant: integer `r` is between `i` and `N - 1`.
+* Common bug: integer `r` is between `0` and `N - 1` (picking amongst entire array doesn't guarantee uniformly random result).
+
 ## Mergesort
 
 **Goal**:
@@ -128,6 +147,66 @@ L ----- M ----- P ----- T
 
 * A sorting algorithm is in-place if it uses `<= c log N` extra memory.
 * Examples: Insertion sort, selection sort, shellsort.
+
+## Quicksort
+
+**Algorithm**:
+* Shuffle the array.
+* Partition so that, for some `j`:
+    - entry `a[j]` is in place
+    - no larger entry to the left of `j`
+    - no smaller entry to the right of `j`
+* Sort each piece recursively.
+
+**Partitioning Procedure**:
+* Phase I (repeat until `i` and `j` pointers cross)
+    - Scan `i` from left to right so long as `(a[i] < a[lo])`.
+    - Scan `j` from right to left so long as `(a[j] > a[lo])`.
+    - Exchange `a[i]` with `a[j]`.
+
+* Phase II (when pointers cross)
+    - Exchange `a[lo]` with `a[j]`.
+
+**Implementation Details**:
+
+* Partitioning in-place:
+    - Using an extra array makes partitioning easier (and stable), but is not worth the cost.
+    - Advantage over mergesort is that it doesn't take extra space. Does sort in-place.
+* Terminating the loop:
+    - Testing whether the pointers cross is trickier than it seems. (duplicate keys)
+* Preserving randomness:
+    - _Shuffling is needed for performance guarantee_.
+* Equal keys:
+    - When duplicates are present, it is (counter-intuitively) better to stop on keys equal to the partitioning item's key.
+
+**Analysis**:
+
+* Best case number of compares: ~ N log N
+
+* Worst case number of compares: ~ 1/2 N<sup>2</sup>
+    - Partitioning doesn't do anything if shuffle puts everything in order.
+    - Assuming uniformly random shuffle, this is very unlikely, "more likely computer is struck by lightning".
+
+* Average case number of compares: ~ 1.39N lg N
+    - 39% more compares than mergesort.
+    - Faster than mergesort in practice because of less data movement.
+
+* Random shuffle:
+    - Probabilistic guarantee against worst case.
+
+* Caveat emptor (implementations go quadratic if array):
+    - is sorted or reverse sorted.
+    - has many duplicates (even if randomized).
+
+**Properties**:
+
+* Quicksort is an `in-place` sorting algorithm.
+* Partitioning allows it to use constant extra space.
+* Depth of recursion takes logarithmic extra space (with high probability).
+* Quicksort is not stable.
+* Too much overhead for small subarrays.
+* Use insertion sort for arrays of up to ~ 20 items.
+* Best pivot (partition center) is median.
 
 ## Complexity of Sorting
 
