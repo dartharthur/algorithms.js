@@ -258,3 +258,39 @@ Insertion sort is stable because equal items never move past each other.
 Selection sort is not stable because a long-distance exchange might move an item past some equal item.
 
 Any long-distance exchange, where keys are moved past other keys that might be equal, is not stable.
+
+## Sorting Applications
+
+**Obvious Applications**:
+
+* Sort a list of names.
+* Organize an mp3 library.
+* Display Google PageRank results.
+* List RSS feed in reverse chronological order.
+
+**Problems become easy once items are in sorted order**:
+
+* Find the median.
+* Binary search in a database.
+* Identify statistical outliers.
+* Find duplicates in a mailing list.
+
+**Non-obvious applications**:
+
+* Data compression.
+* Computer graphics.
+* Computational biology.
+* Load balancing on a parallel computer.
+
+## Sorting Summary
+
+
+|               |  inplace?   |    stable?    |   worst           |  average          |   best            |     remarks                                          |
+| :-----------: | :---------: | :-----------: | :---------------: | :---------------: | :---------------: | :--------------------------------------------------: |
+|  selection    |   - [x]     |               | N<sup>2</sup> / 2 | N<sup>2</sup> / 2 | N<sup>2</sup> / 2 | N exchanges                                          |
+|  insertion    |   - [x]     |     - [x]     | N<sup>2</sup> / 2 | N<sup>2</sup> / 4 |          N        | use for small N or partially ordered                 |
+|  shell        |   - [x]     |               |          ?        |          ?        |          N        | tight code, subquadratic                             |
+|  merge        |             |     - [x]     |      N log N      |      N log N      |      N log N      | N log N guarantee, stable                            |
+|  quick        |   - [x]     |               | N<sup>2</sup> / 2 |     2 N log N     |      N log N      | N log N probabilistic guarantee, fastest in practice |
+|  3-way quick  |   - [x]     |               | N<sup>2</sup> / 2 |     2 N log N     |          N        | improves quicksort in presence of duplicate keys     |
+|  ???          |   - [x]     |     - [x]     |      N log N      |      N log N      |      N log N      | holy sorting grail                                   |
