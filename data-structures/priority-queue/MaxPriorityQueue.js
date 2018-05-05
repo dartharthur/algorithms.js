@@ -53,11 +53,7 @@ class MaxPQ {
   }
 
   _exch(i, j) {
-    const temp = this._pq[i];
-    this._pq[i] = this._pq[j];
-    this._pq[j] = temp;
-
-    // [this._pq[i], this._pq[j]] = [this._pq[j], this._pq[i]];
+    [this._pq[i], this._pq[j]] = [this._pq[j], this._pq[i]];
   }
 }
 
