@@ -50,7 +50,29 @@ order-of-growth of running time for priority queue with N items
 | :--------------: | :-----------: | :-----------: | :-----------: |
 |  unordered array |   1           |   N           |   N           |
 |  ordered array   |   N           |   1           |   1           |
-|  goal            |   log N       |   log N       |   log N       |
+|  binary heap     |   log N       |   log N       |   1           |
+
+### Binary Heap Considerations
+
+**Immutability of Keys**
+
+* Assumption: Client does not change keys while they're on the PQ.
+* Best Practice: Use immutable keys.
+
+**Underflow and Overlow**
+
+* Underflow: Throw exception if deleting from empty PQ.
+* Overflow: Add no-arg constructor and use resizing array (leads to log N amortized time per op).
+
+**Min-Oriented Priority Queue**:
+
+* Replace `less()` with `greater()`.
+* Implement `greater()`.
+
+**Other Operations**:
+
+* Remove an arbitrary item.
+* Change the priority of an item.
 
 ## Notes
 
