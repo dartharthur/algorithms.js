@@ -1,4 +1,5 @@
 # Priority Queue
+
 * Remove the largest (or smallest) item.
 * Useful for graph searching (Dijkstra's algorithm, Prim's algorithm).
 

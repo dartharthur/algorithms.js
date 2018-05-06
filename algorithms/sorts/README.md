@@ -208,6 +208,49 @@ L ----- M ----- P ----- T
 * Use insertion sort for arrays of up to ~ 20 items.
 * Best pivot (partition center) is median.
 
+
+## Heapsort
+
+### Heap Construction
+
+First pass:
+* Build heap using bottom-up method.
+
+```java
+for (int k = N / 2; k >= 1; k--)
+  sink(a, k, N);
+```
+
+### Sortdown
+
+Second pass:
+* Remove the maximum, one at a time.
+* Leave in array, instead of nulling out.
+
+```java
+while (N > 1)
+{
+  exch(a, 1, N--);
+  sink(a, 1, N);
+}
+```
+
+### Mathematical Analysis
+
+**Proposition**: Heap construction uses <= 2 N compares and exchanges.
+
+**Proposition**: Heapsort uses <= 2 N log N compares and exchanges.
+
+**Significance**: In-place sorting algorithm with N log N worst-case?
+* Mergsort: no, linear extra space (in-place merge possible, not practical).
+* Quicksort: no, quadratic time in worst case (N log N worst-case quicksort possible, not practical).
+* Heapsort: yes!
+
+**Summary**: Heapsort is optimal for both time and space, but:
+* Inner loop longer than quicksort's.
+* Makes poor use of cache memory.
+* Not stable.
+
 ## Complexity of Sorting
 
 **Computational complexity**: Framework to study efficiency of algorithms for solving a particular problem X.
@@ -290,7 +333,8 @@ Any long-distance exchange, where keys are moved past other keys that might be e
 |  selection    |   - [x]     |               | N<sup>2</sup> / 2 | N<sup>2</sup> / 2 | N<sup>2</sup> / 2 | N exchanges                                          |
 |  insertion    |   - [x]     |     - [x]     | N<sup>2</sup> / 2 | N<sup>2</sup> / 4 |          N        | use for small N or partially ordered                 |
 |  shell        |   - [x]     |               |          ?        |          ?        |          N        | tight code, subquadratic                             |
-|  merge        |             |     - [x]     |      N log N      |      N log N      |      N log N      | N log N guarantee, stable                            |
 |  quick        |   - [x]     |               | N<sup>2</sup> / 2 |     2 N log N     |      N log N      | N log N probabilistic guarantee, fastest in practice |
 |  3-way quick  |   - [x]     |               | N<sup>2</sup> / 2 |     2 N log N     |          N        | improves quicksort in presence of duplicate keys     |
+|  merge        |             |     - [x]     |      N log N      |      N log N      |      N log N      | N log N guarantee, stable                            |
+|  heap         |   - [x]     |               |    2 N log N      |    2 N log N      |      N log N      | N log N guarantee, in-place                          |
 |  ???          |   - [x]     |     - [x]     |      N log N      |      N log N      |      N log N      | holy sorting grail                                   |
