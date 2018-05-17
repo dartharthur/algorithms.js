@@ -49,9 +49,9 @@ Associative array abstraction --> associate one value with each key.
               ST()
          void put(Key key, Value val) // a[key] = val
         Value get(Key key)            // a[key]
-         void delete(Key key)   
-      boolean contains(Key key) 
-      boolean isEmpty()         
+         void delete(Key key)
+      boolean contains(Key key)
+      boolean isEmpty()
           int size()
 Iterable<Key> keys()
 ```
