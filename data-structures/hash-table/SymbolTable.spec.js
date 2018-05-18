@@ -3,14 +3,14 @@ const SeparateChainingHashTableST = require('./SymbolTable');
 describe('SeparateChainingHashTableST', () => {
   let symbolTable;
   // to edit
-  const people = [
-    ['Steven', 'Tyler'],
-    ['George', 'Harrison'],
-    ['Mr.', 'Doob'],
-    ['Dr.', 'Sunshine'],
-    ['John', 'Resig'],
-    ['Brendan', 'Eich'],
-    ['Alan', 'Turing'],
+  const starWarsCharacters = [
+    ['Ben', 'Kenobi'],
+    ['Padme', 'Amidala'],
+    ['Luke', 'Skywalker'],
+    ['Ki', 'Adimundi'],
+    ['Darth', 'Sidious'],
+    ['Master', 'Yoda'],
+    ['Asohka', 'Thano'],
   ];
 
   beforeEach(() => {
@@ -55,6 +55,28 @@ describe('SeparateChainingHashTableST', () => {
     expect(symbolTable.get('Mad')).toBe(null);
   });
 
+  test('should return true if table is empty', () => {
+    symbolTable.put('Mad', 'Max');
+    symbolTable.delete('Mad');
+    expect(symbolTable.isEmpty()).toBe(true);
+  });
+
+  test('should return false if table is not empty', () => {
+    symbolTable.put('Mad', 'Max');
+    expect(symbolTable.isEmpty()).toBe(false);
+  });
+
+  test('should return true if table contains a key', () => {
+    symbolTable.put('Mad', 'Max');
+    expect(symbolTable.contains('Mad')).toBe(true);
+  });
+
+  test('should return false if table does not contain a key', () => {
+    symbolTable.put('Mad', 'Max');
+    symbolTable.delete('Mad');
+    expect(symbolTable.contains('Mad')).toBe(false);
+  });
+
   test('should handle hash function collisions', () => {
     const v1 = 'grow';
     const v2 = 'yeah';
@@ -64,30 +86,35 @@ describe('SeparateChainingHashTableST', () => {
     expect(symbolTable.get(v2)).toBe(v2);
   });
 
-  // // (Advanced! Remove the extra "x" when you want the following tests to run)
-  // test('should double in size when needed', function() {
-  //   _.each(people, function(person) {
-  //     var firstName = person[0];
-  //     var lastName = person[1];
-  //     symbolTable.insert(firstName, lastName);
-  //     expect(symbolTable.retrieve(firstName)).to.equal(lastName);
-  //   });
-  //   expect(symbolTable._limit).to.equal(16);
-  // });
+  test('should return all keys in the table', () => {
+    starWarsCharacters.forEach(([firstName, lastName]) => {
+      symbolTable.put(firstName, lastName);
+      expect(symbolTable.get(firstName)).toBe(lastName);
+    });
+    const keys = symbolTable.keys().sort();
+    const expected = starWarsCharacters.map(([firstName]) => firstName).sort();
+    expect(keys).toEqual(expected);
+  });
 
-  // test('should halve in size when needed', function() {
-  //   _.each(people, function(person) {
-  //     var firstName = person[0];
-  //     var lastName = person[1];
-  //     symbolTable.insert(firstName, lastName);
-  //     expect(symbolTable.retrieve(firstName)).to.equal(lastName);
-  //   });
-  //   expect(symbolTable._limit).to.equal(16);
-  //   symbolTable.remove('George');
-  //   symbolTable.remove('Dr.');
-  //   symbolTable.remove('Steven');
-  //   symbolTable.remove('John');
-  //   symbolTable.remove('Mr.');
-  //   expect(symbolTable._limit).to.equal(8);
-  // });
+  test('should double in size when needed', () => {
+    starWarsCharacters.forEach(([firstName, lastName]) => {
+      symbolTable.put(firstName, lastName);
+      expect(symbolTable.get(firstName)).toBe(lastName);
+    });
+    expect(symbolTable._limit).toBe(16);
+  });
+
+  test('should halve in size when needed', () => {
+    starWarsCharacters.forEach(([firstName, lastName]) => {
+      symbolTable.put(firstName, lastName);
+      expect(symbolTable.get(firstName)).toBe(lastName);
+    });
+    expect(symbolTable._limit).toBe(16);
+    symbolTable.delete('Ben');
+    symbolTable.delete('Padme');
+    symbolTable.delete('Luke');
+    symbolTable.delete('Ki');
+    symbolTable.delete('Darth');
+    expect(symbolTable._limit).toBe(8);
+  });
 });

@@ -1,14 +1,3 @@
-/*
- public class ST<Key, Value>
-              ST()
-         void put(Key key, Value val) // a[key] = val
-        Value get(Key key)            // a[key]
-         void delete(Key key)
-      boolean contains(Key key)
-      boolean isEmpty()
-          int size()
-Iterable<Key> keys()
-*/
 class SeparateChainingHashTableST {
   constructor() {
     this._limit = 8;
@@ -31,8 +20,12 @@ class SeparateChainingHashTableST {
     }
 
     chain.addToTail(key, value);
-    this._size += 1;
     this._storage.set(index, chain);
+    this._size += 1;
+
+    if (this._size > this._limit * 0.75) {
+      this._resize(this._limit * 2);
+    }
 
     return null;
   }
@@ -51,21 +44,66 @@ class SeparateChainingHashTableST {
     const chain = this._storage.get(index) || new LinkedList();
 
     chain.deleteNode(key);
+    this._size -= 1;
+
+    if (this._size < this._limit * 0.25) {
+      this._resize(Math.floor(this._limit / 2));
+    }
 
     return null;
   }
 
-  contains() {}
+  contains(key) {
+    const index = getIndexBelowMaxForKey(key, this._limit);
 
-  isEmpty() {}
+    const chain = this._storage.get(index) || new LinkedList();
+
+    return chain.contains(key);
+  }
+
+  isEmpty() {
+    return this._size === 0;
+  }
 
   size() {
     return this._size;
   }
 
-  keys() {}
+  keys() {
+    const keys = [];
 
-  _resize() {}
+    this._storage.each(chain => {
+      if (chain) {
+        chain.each(node => {
+          keys.push(node.key);
+        });
+      }
+    });
+
+    return keys;
+  }
+
+  _resize(newLimit) {
+    newLimit = Math.max(newLimit, 8);
+
+    if (newLimit === this._limit) {
+      return null;
+    }
+
+    const oldStorage = this._storage;
+
+    this._limit = newLimit;
+    this._storage = new LimitedArray(this._limit);
+    this._size = 0;
+
+    oldStorage.each(chain => {
+      if (chain) {
+        chain.each(node => {
+          this.put(node.key, node.value);
+        });
+      }
+    });
+  }
 }
 
 class LinkedList {
@@ -85,12 +123,20 @@ class LinkedList {
     return null;
   }
 
+  each(callback) {
+    let current = this.head;
+    while (current) {
+      callback(current);
+      current = current.next;
+    }
+  }
+
   deleteNode(key) {
     let current = this.head;
 
     if (current.next) {
       while (current) {
-        if (key === current.next.key) {
+        if (current.next && key === current.next.key) {
           const nodeToSwap = current.next.next;
           delete current.next;
           current.next = nodeToSwap;
@@ -124,6 +170,17 @@ class LinkedList {
     this.head = this.head.next;
     return nodeToDelete.value;
   }
+
+  contains(key) {
+    let current = this.head;
+    while (current) {
+      if (key === current.key) {
+        return true;
+      }
+      current = current.next;
+    }
+    return false;
+  }
 }
 
 class LinkedListNode {
@@ -151,7 +208,7 @@ class LimitedArray {
 
   each(callback) {
     for (let i = 0; i < this._storage.length; i++) {
-      callback(this._storage[i], i, storage);
+      callback(this._storage[i], i, this._storage);
     }
   }
 
