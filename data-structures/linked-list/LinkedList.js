@@ -1,3 +1,5 @@
+const LinkedListNode = require('./LinkedListNode');
+
 class LinkedList {
   constructor() {
     this.head = null;
@@ -31,13 +33,6 @@ class LinkedList {
       current = current.next;
     }
     return false;
-  }
-}
-
-class LinkedListNode {
-  constructor(value = null) {
-    this.value = value;
-    this.next = null;
   }
 }
 
