@@ -79,3 +79,76 @@ public static int maxDegree(Graph G)
 |  adjacency lists    |   E + V         |   1      |   degree(v)           |   degree(v)                          |
 
 `*` - disallows parallel edges
+
+## Depth-First Search
+
+Goal: Systematically search through a graph.
+
+Idea: Mimic maze exploration.
+
+DFS (to visit a vertex v)
+* Mark v as visited
+* Recursively visit all unmarked vertices w adjacent to v.
+
+Typical Applications:
+* Find all vertices connected to a given source vertex.
+* Find a path between two vertices.
+
+**Design Pattern for Graph Processing**
+Design pattern: Decouple graph data type from graph processing.
+* Create a Graph object.
+* Pass the Graph to a graph-processing routine.
+* Query the graph-processing routine for information.
+
+We do this because there are hundreds of graph-processing algorithms and so we can't put them all in the Graph API. The interface would be too fat.
+
+Instead we can decouple the graph implementation from the graph-processing routines and only expose the graph-processing routines for querying.
+
+```java
+                  Paths(Graph G, int s) // find paths in G from source s
+          boolean hashPathTo(int v) // is there a path from s to v?
+Iterable<Integer> pathTo(int v) // path from s to v; null if no such path
+```
+
+```java
+Paths paths = new Paths(G, s);
+for (int v = 0; v < G.V(); v++)
+  if (paths.hasPathTo(v))
+    StdOut.println(v); // print all vertices connected to s
+```
+
+**Summary**
+
+Goal: Find all vertices connected to `s` (and a corresponding path).
+
+Idea: Mimic maze exploration.
+
+Algorithm
+* Use recursion.
+* Mark each visited vertex (and keep track of edge taken to visit it).
+* Return (retrace steps) when no unvisited options.
+
+Data Structures
+* both arrays are vertex-indexed
+* `boolean[] marked` to mark visited vertices.
+* `int[] edgeTo` to keep tree of paths.
+    - (edgeTo[w] == v) means that edge `v-w` taken to visit `w` for first time
+
+## Depth-First Search Properties
+* DFS marks all vertices connected to `s` in time proportional to the sum of their degrees.
+* After DFS, can find vertices connected to `s` in constant time and can find a path to `s` (if one exists) in time proportional to its length.
+
+```java
+public boolean hasPathTo(int v)
+{ return marked[v]; }
+
+public Iterable<Integer> pathTo(int v)
+{
+  if (!hasPathTo(v)) return null;
+  Stack<Integer> path = new Stack<Integer>();
+  for (int x = v; x != s; x = edgeTo[x])
+    path.push(x);
+  path.push(s);
+  return path;
+}
+```

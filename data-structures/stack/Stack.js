@@ -1,4 +1,4 @@
-const LinkedList = require('../linked-list/LinkedList');
+const LinkedListNode = require('../linked-list/LinkedListNode');
 
 class Stack {
   constructor() {
@@ -8,7 +8,7 @@ class Stack {
 
   push(value) {
     const oldFirst = this._first;
-    this._first = new LinkedList(value);
+    this._first = new LinkedListNode(value);
     this._first.next = oldFirst;
     this._size += 1;
   }

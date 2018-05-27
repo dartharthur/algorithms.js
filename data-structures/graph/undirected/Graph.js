@@ -2,8 +2,12 @@ const Bag = require('../../linked-list/Bag');
 
 class Graph {
   constructor(V) {
-    this.V = V;
+    this._V = V;
     this._adj = Array.from({ length: 10 }, () => new Bag());
+  }
+
+  V() {
+    return this._V;
   }
 
   addEdge(v, w) {

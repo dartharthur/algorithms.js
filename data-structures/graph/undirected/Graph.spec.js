@@ -7,7 +7,7 @@ describe('Graph', () => {
     graph = new Graph(10);
   });
 
-  test('should have methods named "addEdge" and "adj"', () => {
+  test('should have methods named "V", "addEdge", and "adj"', () => {
     expect(typeof graph.addEdge).toBe('function');
     expect(typeof graph.adj).toBe('function');
   });
