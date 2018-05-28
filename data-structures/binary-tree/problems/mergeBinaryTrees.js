@@ -8,4 +8,4 @@ const mergeBinaryTreesR = (t1, t2) => {
   return t1;
 };
 
-export default mergeBinaryTreesR;
+module.exports = mergeBinaryTreesR;

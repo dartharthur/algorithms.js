@@ -1,4 +1,4 @@
-const { BinaryTreeNode } = require('../../BinaryTree');
+const { BinaryTreeNode } = require('../BinaryTree');
 const isBalanced = require('../problems/isBalanced');
 
 const bt1 = new BinaryTreeNode(3);

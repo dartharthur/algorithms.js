@@ -1,4 +1,4 @@
-const { BinaryTreeNode } = require('../../BinaryTree');
+const { BinaryTreeNode } = require('../BinaryTree');
 const levelOrder = require('../problems/levelOrder');
 
 const bt = new BinaryTreeNode(3);

@@ -10,9 +10,7 @@
 // };
 
 const flattenAndRemoveDuplicates = (arr, result = []) => {
-  console.log("Our current array is", arr);
   for (let i = 0; i < arr.length; i += 1) {
-    console.log("Our current element is", arr[i]);
     if (Array.isArray(arr[i])) {
       flattenAndRemoveDuplicates(arr[i], result);
     } else if (!result.includes(arr[i])) {

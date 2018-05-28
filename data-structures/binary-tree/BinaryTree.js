@@ -1,6 +1,6 @@
 /* eslint-disable consistent-return */
-const Stack = require('./Stack');
-const Queue = require('./Queue');
+const Stack = require('../stack/Stack');
+const Queue = require('../queue/Queue');
 
 class BinaryTreeNode {
   constructor(value) {

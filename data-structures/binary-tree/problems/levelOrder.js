@@ -1,4 +1,4 @@
-const Queue = require('../../Queue');
+const Queue = require('../../queue/Queue');
 
 /**
  * Definition for a binary tree node.

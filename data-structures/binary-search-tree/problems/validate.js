@@ -1,4 +1,4 @@
-const Stack = require("../../Stack");
+const Stack = require('../../stack/Stack');
 
 /**
  * Definition for a binary tree node.
