@@ -1,6 +1,8 @@
+const Queue = require('../../queue/Queue');
 const Stack = require('../../stack/Stack');
+const Graph = require('./Graph');
 
-class DepthFirstPaths {
+class BreadthFirstPaths {
   /**
    * Computes a path between s and every other vertex in graph G.
    * @param G the graph
@@ -12,18 +14,24 @@ class DepthFirstPaths {
     this._edgeTo = new Array(G.V());
     this._marked = new Array(G.V()).fill(false);
     this._validateVertex(s);
-    this._dfs(G, s);
+    this._bfs(G, s);
   }
 
-  _dfs(G, v) {
-    this._marked[v] = true;
-    const adjacentVertices = G.adj(v);
-    adjacentVertices.iterate(w => {
-      if (!this._marked[w]) {
-        this._edgeTo[w] = v;
-        this._dfs(G, w);
-      }
-    });
+  _bfs(G, s) {
+    const queue = new Queue();
+    this._marked[s] = true;
+    queue.enqueue(s);
+    while (!queue.isEmpty()) {
+      const v = queue.dequeue();
+      const adjacentVertices = G.adj(v);
+      adjacentVertices.iterate(w => {
+        if (!this._marked[w]) {
+          this._edgeTo[w] = v;
+          this._marked[w] = true;
+          queue.enqueue(w);
+        }
+      });
+    }
   }
 
   hasPathTo(v) {
@@ -50,4 +58,4 @@ class DepthFirstPaths {
   }
 }
 
-module.exports = DepthFirstPaths;
+module.exports = BreadthFirstPaths;

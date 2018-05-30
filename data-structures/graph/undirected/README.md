@@ -152,3 +152,25 @@ public Iterable<Integer> pathTo(int v)
   return path;
 }
 ```
+
+## Breadth-First Search
+
+DFS: Put unvisited vertices on a `stack`.
+
+BFS: Put unvisited vertices on a `queue`.
+
+BFS solves shortest path problem:
+* Find path from `s` to `t` that uses fewest number of edges.
+* Works because BFS examines vertices in increasing distance from `s`.
+
+BFS algorithm (from source vertex `s`):
+* Put `s` onto a FIFO queue, and mark `s` as visited.
+* Repeat the following until the queue is empty:
+    - remove the least recently added vertex `v` (dequeue).
+    - add each of `v`'s unvisited neighbors to the queue and mark them as visited.
+
+**Proposition**: BFS computes shortest paths (fewest number of edges) from `s` to all other vertices in a graph in time proportional to `E + V`.
+
+**Proof [correctness]**: Queue always consists of zero or more vertices of distance `k` from `s`, follow by zero or more vertices of distance `k + 1`, and so on.
+
+**Proof [running time]**: Each vertex connected to `s` is visited once.
