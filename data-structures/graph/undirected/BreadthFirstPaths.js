@@ -1,6 +1,5 @@
 const Queue = require('../../queue/Queue');
 const Stack = require('../../stack/Stack');
-const Graph = require('./Graph');
 
 class BreadthFirstPaths {
   /**
@@ -11,7 +10,9 @@ class BreadthFirstPaths {
    */
   constructor(G, s) {
     this._s = s;
+    this._INFINITY = Number.MAX_VALUE;
     this._edgeTo = new Array(G.V());
+    this._distTo = Array.from({ length: G.V() }, () => this._INFINITY);
     this._marked = new Array(G.V()).fill(false);
     this._validateVertex(s);
     this._bfs(G, s);
@@ -20,6 +21,7 @@ class BreadthFirstPaths {
   _bfs(G, s) {
     const queue = new Queue();
     this._marked[s] = true;
+    this._distTo[s] = 0;
     queue.enqueue(s);
     while (!queue.isEmpty()) {
       const v = queue.dequeue();
@@ -27,6 +29,7 @@ class BreadthFirstPaths {
       adjacentVertices.iterate(w => {
         if (!this._marked[w]) {
           this._edgeTo[w] = v;
+          this._distTo[w] = this._distTo[v] + 1;
           this._marked[w] = true;
           queue.enqueue(w);
         }
@@ -48,6 +51,11 @@ class BreadthFirstPaths {
     }
     path.push(this._s);
     return path;
+  }
+
+  distTo(v) {
+    this._validateVertex(v);
+    return this._distTo[v];
   }
 
   _validateVertex(v) {

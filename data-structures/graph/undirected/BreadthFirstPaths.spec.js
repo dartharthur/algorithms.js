@@ -32,4 +32,10 @@ describe('BreadthFirstPaths', () => {
     const expected = [0, 2, 3, 5];
     expect(result).toEqual(expected);
   });
+
+  test('should return the length of the shortest path to a vertex', () => {
+    expect(breadthFirstPaths.distTo(0)).toBe(0);
+    expect(breadthFirstPaths.distTo(2)).toBe(1);
+    expect(breadthFirstPaths.distTo(5)).toBe(3);
+  });
 });
