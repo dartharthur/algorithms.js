@@ -227,3 +227,9 @@ Connected components algorithm:
   - Vertex: pixel.
   - Edge: between two adjacent pixels with grayscale value >= 70 (black = 0, white = 255).
   - Blob: connected component of 20-30 pixels.
+
+## Graph-Processing Challenges
+
+* Is a graph bipartite? --> DFS.
+* Does a graph have a cycle? --> DFS.
+* Does a graph contain a (general) cycle that uses every edge exactly once? --> Eulerian tour.
