@@ -1,4 +1,4 @@
-const LinkedList = require('../linked-list/LinkedList');
+const LinkedListNode = require('../linked-list/LinkedListNode');
 
 class Queue {
   constructor() {
@@ -9,7 +9,7 @@ class Queue {
 
   enqueue(value) {
     const oldLast = this._last;
-    this._last = new LinkedList(value);
+    this._last = new LinkedListNode(value);
     if (this.isEmpty()) {
       this._first = this._last;
     } else {

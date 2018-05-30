@@ -134,7 +134,7 @@ Data Structures
 * `int[] edgeTo` to keep tree of paths.
     - (edgeTo[w] == v) means that edge `v-w` taken to visit `w` for first time
 
-## Depth-First Search Properties
+### Depth-First Search Properties
 * DFS marks all vertices connected to `s` in time proportional to the sum of their degrees.
 * After DFS, can find vertices connected to `s` in constant time and can find a path to `s` (if one exists) in time proportional to its length.
 
@@ -174,3 +174,56 @@ BFS algorithm (from source vertex `s`):
 **Proof [correctness]**: Queue always consists of zero or more vertices of distance `k` from `s`, follow by zero or more vertices of distance `k + 1`, and so on.
 
 **Proof [running time]**: Each vertex connected to `s` is visited once.
+
+## Connected Components
+
+**Def**: Vertices `v` and `w` are `connected` if there is a path between them.
+
+**Goal**: Preprocess graph to answer queries of the form _is `v` connected to `w`?_ in `constant` time.
+
+```java
+        CC(Graph G)             // find connected components in G
+boolean connected(int v, int w) // are v and w connected?
+    int count()                 // number of connected components
+    int id(int v)               // component identifier for v
+```
+
+The relation "is connected to" is an `equivalence relation`:
+* Reflexive: `v` is connected to `w`.
+* Symmetric: if `v` is connected to `w`, then `w` is connected to `v`.
+* Transitive: if `v` is connected to `w` and `w` is connected to `x`, then `v` is connected to `x`.
+
+**Def**: A `connected component` is a maximal set of connected vertices.
+
+| v      | id[v] |
+| :----: | :---: |
+| 0      | 0     |
+| 1      | 0     |
+| 2      | 0     |
+| 3      | 0     |
+| 4      | 0     |
+| 5      | 0     |
+| 6      | 0     |
+| 7      | 1     |
+| 8      | 1     |
+| 9      | 2     |
+| 10     | 2     |
+| 11     | 2     |
+| 12     | 2     |
+
+**Goal**: Partition vertices into connected components.
+
+Connected components algorithm:
+* Initialize all vertices `v` as unmarked.
+* For each unmarked vertex `v`, run DFS to identify all vertices discovered as part of the same component.
+
+**Connected Components Applications**
+* Study spread of STDs
+  - Vertices are individuals and edges are relations.
+  - Connected components would be sub-populations in which any one member had a relation with another member in the sub-population.
+
+* Particle detections (track moving particles over time)
+  - Given grayscale image of particles, identify "blobs".
+  - Vertex: pixel.
+  - Edge: between two adjacent pixels with grayscale value >= 70 (black = 0, white = 255).
+  - Blob: connected component of 20-30 pixels.
