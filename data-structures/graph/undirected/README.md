@@ -57,26 +57,29 @@ public static int maxDegree(Graph G)
 ```
 
 ## Adjacency-List Graph Representation
-* Most widely used implementation.
-* Maintain vertex-indexed array of lists.
-* For every vertex, maintain a list of vertices that are adjacent to that vertex.
-* Can use a Bag (Abstract Data Type) to hold the adjacent vertices.
+
+- Most widely used implementation.
+- Maintain vertex-indexed array of lists.
+- For every vertex, maintain a list of vertices that are adjacent to that vertex.
+- Can use a Bag (Abstract Data Type) to hold the adjacent vertices.
 
 ## Graph Representations
+
 **In Practice**:
-* Use adjacency-lists representation.
-* Most graph algorithms based on interating over vertices adjacent to `v`.
-* Real-world graphs tend to be `sparse`.
-    - Huge number of vertices.
-    - Small average vertex degree.
+
+- Use adjacency-lists representation.
+- Most graph algorithms based on interating over vertices adjacent to `v`.
+- Real-world graphs tend to be `sparse`.
+  - Huge number of vertices.
+  - Small average vertex degree.
 
 **order of growth of running time of graph operations by representation**
 
-| representation      | space           | add edge | edge between v and w? | iterate over vertices adjacent to v? |
-| :-----------------: | :-------------: | :------: | :-------------------: | :----------------------------------: |
-|  list of edges      |   E             |   1      |   E                   |   E                                  |
-|  adjacency matrix   |   V<sup>2</sup> |   1*     |   1                   |   V                                  |
-|  adjacency lists    |   E + V         |   1      |   degree(v)           |   degree(v)                          |
+|  representation  |     space     | add edge | edge between v and w? | iterate over vertices adjacent to v? |
+| :--------------: | :-----------: | :------: | :-------------------: | :----------------------------------: |
+|  list of edges   |       E       |    1     |           E           |                  E                   |
+| adjacency matrix | V<sup>2</sup> |   1\*    |           1           |                  V                   |
+| adjacency lists  |     E + V     |    1     |       degree(v)       |              degree(v)               |
 
 `*` - disallows parallel edges
 
@@ -87,18 +90,21 @@ Goal: Systematically search through a graph.
 Idea: Mimic maze exploration.
 
 DFS (to visit a vertex v)
-* Mark v as visited
-* Recursively visit all unmarked vertices w adjacent to v.
+
+- Mark v as visited
+- Recursively visit all unmarked vertices w adjacent to v.
 
 Typical Applications:
-* Find all vertices connected to a given source vertex.
-* Find a path between two vertices.
+
+- Find all vertices connected to a given source vertex.
+- Find a path between two vertices.
 
 **Design Pattern for Graph Processing**
 Design pattern: Decouple graph data type from graph processing.
-* Create a Graph object.
-* Pass the Graph to a graph-processing routine.
-* Query the graph-processing routine for information.
+
+- Create a Graph object.
+- Pass the Graph to a graph-processing routine.
+- Query the graph-processing routine for information.
 
 We do this because there are hundreds of graph-processing algorithms and so we can't put them all in the Graph API. The interface would be too fat.
 
@@ -124,19 +130,22 @@ Goal: Find all vertices connected to `s` (and a corresponding path).
 Idea: Mimic maze exploration.
 
 Algorithm
-* Use recursion.
-* Mark each visited vertex (and keep track of edge taken to visit it).
-* Return (retrace steps) when no unvisited options.
+
+- Use recursion.
+- Mark each visited vertex (and keep track of edge taken to visit it).
+- Return (retrace steps) when no unvisited options.
 
 Data Structures
-* both arrays are vertex-indexed
-* `boolean[] marked` to mark visited vertices.
-* `int[] edgeTo` to keep tree of paths.
-    - (edgeTo[w] == v) means that edge `v-w` taken to visit `w` for first time
+
+- both arrays are vertex-indexed
+- `boolean[] marked` to mark visited vertices.
+- `int[] edgeTo` to keep tree of paths.
+  - (edgeTo[w] == v) means that edge `v-w` taken to visit `w` for first time
 
 ### Depth-First Search Properties
-* DFS marks all vertices connected to `s` in time proportional to the sum of their degrees.
-* After DFS, can find vertices connected to `s` in constant time and can find a path to `s` (if one exists) in time proportional to its length.
+
+- DFS marks all vertices connected to `s` in time proportional to the sum of their degrees.
+- After DFS, can find vertices connected to `s` in constant time and can find a path to `s` (if one exists) in time proportional to its length.
 
 ```java
 public boolean hasPathTo(int v)
@@ -160,14 +169,16 @@ DFS: Put unvisited vertices on a `stack`.
 BFS: Put unvisited vertices on a `queue`.
 
 BFS solves shortest path problem:
-* Find path from `s` to `t` that uses fewest number of edges.
-* Works because BFS examines vertices in increasing distance from `s`.
+
+- Find path from `s` to `t` that uses fewest number of edges.
+- Works because BFS examines vertices in increasing distance from `s`.
 
 BFS algorithm (from source vertex `s`):
-* Put `s` onto a FIFO queue, and mark `s` as visited.
-* Repeat the following until the queue is empty:
-    - remove the least recently added vertex `v` (dequeue).
-    - add each of `v`'s unvisited neighbors to the queue and mark them as visited.
+
+- Put `s` onto a FIFO queue, and mark `s` as visited.
+- Repeat the following until the queue is empty:
+  - remove the least recently added vertex `v` (dequeue).
+  - add each of `v`'s unvisited neighbors to the queue and mark them as visited.
 
 **Proposition**: BFS computes shortest paths (fewest number of edges) from `s` to all other vertices in a graph in time proportional to `E + V`.
 
@@ -189,40 +200,44 @@ boolean connected(int v, int w) // are v and w connected?
 ```
 
 The relation "is connected to" is an `equivalence relation`:
-* Reflexive: `v` is connected to `w`.
-* Symmetric: if `v` is connected to `w`, then `w` is connected to `v`.
-* Transitive: if `v` is connected to `w` and `w` is connected to `x`, then `v` is connected to `x`.
+
+- Reflexive: `v` is connected to `w`.
+- Symmetric: if `v` is connected to `w`, then `w` is connected to `v`.
+- Transitive: if `v` is connected to `w` and `w` is connected to `x`, then `v` is connected to `x`.
 
 **Def**: A `connected component` is a maximal set of connected vertices.
 
-| v      | id[v] |
-| :----: | :---: |
-| 0      | 0     |
-| 1      | 0     |
-| 2      | 0     |
-| 3      | 0     |
-| 4      | 0     |
-| 5      | 0     |
-| 6      | 0     |
-| 7      | 1     |
-| 8      | 1     |
-| 9      | 2     |
-| 10     | 2     |
-| 11     | 2     |
-| 12     | 2     |
+|  v  | id[v] |
+| :-: | :---: |
+|  0  |   0   |
+|  1  |   0   |
+|  2  |   0   |
+|  3  |   0   |
+|  4  |   0   |
+|  5  |   0   |
+|  6  |   0   |
+|  7  |   1   |
+|  8  |   1   |
+|  9  |   2   |
+| 10  |   2   |
+| 11  |   2   |
+| 12  |   2   |
 
 **Goal**: Partition vertices into connected components.
 
 Connected components algorithm:
-* Initialize all vertices `v` as unmarked.
-* For each unmarked vertex `v`, run DFS to identify all vertices discovered as part of the same component.
+
+- Initialize all vertices `v` as unmarked.
+- For each unmarked vertex `v`, run DFS to identify all vertices discovered as part of the same component.
 
 **Connected Components Applications**
-* Study spread of STDs
+
+- Study spread of STDs
+
   - Vertices are individuals and edges are relations.
   - Connected components would be sub-populations in which any one member had a relation with another member in the sub-population.
 
-* Particle detections (track moving particles over time)
+- Particle detections (track moving particles over time)
   - Given grayscale image of particles, identify "blobs".
   - Vertex: pixel.
   - Edge: between two adjacent pixels with grayscale value >= 70 (black = 0, white = 255).
@@ -230,6 +245,6 @@ Connected components algorithm:
 
 ## Graph-Processing Challenges
 
-* Is a graph bipartite? --> DFS.
-* Does a graph have a cycle? --> DFS.
-* Does a graph contain a (general) cycle that uses every edge exactly once? --> Eulerian tour.
+- Is a graph bipartite? --> DFS.
+- Does a graph have a cycle? --> DFS.
+- Does a graph contain a (general) cycle that uses every edge exactly once? --> Eulerian tour.
