@@ -1,15 +1,15 @@
 {
   "extends": ["airbnb-base", "prettier"],
+  "plugins": ["prettier"],
   "rules": {
-    "no-unused-expressions": [
-      "warn",
+    "prettier/prettier": [
+      "error",
       {
-        "allowTernary": true,
+        "singleQuote": true,
+        "trailingComma": "all",
         "allowShortCircuit": true,
-        "singleQuote": true
+        "allowTernary": true
       }
-    ],
-    "prettier/prettier": "error"
-  },
-  "plugins": ["prettier"]
+    ]
+  }
 }
